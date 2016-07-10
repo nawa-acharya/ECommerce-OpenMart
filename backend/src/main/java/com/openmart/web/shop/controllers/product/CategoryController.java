@@ -5,4 +5,5 @@ package com.openmart.web.shop.controllers.product;
  */
 
 public class CategoryController {
+
 }
