@@ -1,13 +1,19 @@
-package com.openmart.core.business.shoppingcart.model;
+package com.openmart.core.business.order.model;
 
+import com.openmart.core.business.shoppingcart.model.CartLine;
+import com.openmart.core.business.shoppingcart.model.Product;
+
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import java.io.Serializable;
 
 /**
  * Created by Endalkachew on 10-Jul-16.
  */
-public class OrderLine {
+@Entity
+public class OrderLine implements Serializable {
 
     @Id
     @GeneratedValue

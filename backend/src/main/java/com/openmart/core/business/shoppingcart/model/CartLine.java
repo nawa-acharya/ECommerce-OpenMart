@@ -1,13 +1,16 @@
 package com.openmart.core.business.shoppingcart.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import java.io.Serializable;
 
 /**
  * Created by Endalkachew on 10-Jul-16.
  */
-public class CartLine {
+@Entity
+public class CartLine implements Serializable {
 
     @Id
     @GeneratedValue
@@ -19,8 +22,8 @@ public class CartLine {
     private int quantity;
 
     public CartLine(){
-
     }
+
     public CartLine(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
@@ -68,7 +71,7 @@ public class CartLine {
     @Override
     public int hashCode()  {
         int result = 1;
-        result = 31 * result + getId();
+        result = 31 * result + getId() + product.getId();
         return result;
     }
 

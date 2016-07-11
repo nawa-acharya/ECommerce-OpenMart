@@ -1,6 +1,11 @@
-package com.openmart.core.business.shoppingcart.model;
+package com.openmart.core.business.order.model;
+
+import com.openmart.core.business.Payment.model.Payment;
+import com.openmart.core.business.shoppingcart.model.Address;
+import com.openmart.core.business.shoppingcart.model.User;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -8,13 +13,10 @@ import java.util.List;
  * Created by Endalkachew on 10-Jul-16.
  */
 @Entity
-public class Order {
+public class Order implements Serializable{
     @Id
     @GeneratedValue
     private int id;
-
-    @ManyToOne
-    private User user;
 
     @OneToOne
     private Address deliveryAddress;
@@ -30,11 +32,15 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     private Date deliveryDate;
 
-    public Order(){
+    @OneToOne(cascade = CascadeType.ALL)
+    private Payment payment;
 
+    private double totalPrice;
+
+    public Order(){
     }
-    public Order(User user, List<OrderLine> orderLines, OrderStatus orderStatus, Date orderDate) {
-        this.user = user;
+
+    public Order(List<OrderLine> orderLines, OrderStatus orderStatus, Date orderDate) {
         this.orderLines = orderLines;
         this.orderStatus = orderStatus;
         this.orderDate = orderDate;
@@ -46,14 +52,6 @@ public class Order {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public List<OrderLine> getOrderLines() {
@@ -92,17 +90,27 @@ public class Order {
         this.orderLines.add(orderLine);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if(obj == null){
-            return false;
-        }
-        if(obj instanceof Order){
-            Order order = (Order)obj;
-            if(this.getId() == order.getId()){
-                return true;
-            }
-        }
-        return false;
+    public Address getDeliveryAddress() {
+        return deliveryAddress;
+    }
+
+    public void setDeliveryAddress(Address deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

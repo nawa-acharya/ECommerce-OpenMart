@@ -1,4 +1,4 @@
-package com.openmart.core.business.shoppingcart.model;
+package com.openmart.core.business.order.model;
 
 /**
  * Created by Endalkachew on 10-Jul-16.
@@ -13,5 +13,7 @@ public enum OrderStatus {
 
     DELIVERED,
 
-    CANCELED
+    CANCELED,
+
+    PAYMENT_FAILED
 }

@@ -1,29 +1,27 @@
 package com.openmart.core.business.shoppingcart.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by Endalkachew on 10-Jul-16.
  */
 @Entity
-public class ShoppingCart {
+public class ShoppingCart implements Serializable {
 
     @Id
     @GeneratedValue
     private int id;
 
-    @OneToOne
-    private User user;
-
     @OneToMany(cascade = CascadeType.ALL)
-    private Map<CartLine, CartLine> cartLines;
+    private List<CartLine> cartLines;
 
     public ShoppingCart(){
     }
 
-    public ShoppingCart(User user, Map<CartLine, CartLine> cartLines) {
-        this.user = user;
+    public ShoppingCart(List<CartLine> cartLines) {
         this.cartLines = cartLines;
     }
 
@@ -35,23 +33,24 @@ public class ShoppingCart {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Map<CartLine, CartLine> getCartLines() {
+    public List<CartLine> getCartLines() {
         return cartLines;
     }
 
     public void addToCartLine(CartLine cartLine){
-        cartLines.put(cartLine, cartLine);
+        if(!cartLines.contains(cartLine)) {
+            cartLines.add(cartLine);
+        }
     }
 
-    public void setCartLines(Map<CartLine, CartLine> cartLines) {
+    public void updateCartLine(CartLine cartLine){
+        if(cartLines.contains(cartLine)) {
+            cartLines.remove(cartLine);
+            cartLines.add(cartLine);
+        }
+    }
+
+    public void setCartLines(List<CartLine> cartLines) {
         this.cartLines = cartLines;
     }
 
