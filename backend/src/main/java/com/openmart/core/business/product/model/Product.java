@@ -18,6 +18,24 @@ public class Product {
     private double price;
     private String description;
     private String catagory;
+    private  byte image;
+    private  boolean isAvailable;
+
+    public byte getImage() {
+        return image;
+    }
+
+    public void setImage(byte image) {
+        this.image = image;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
 
     public Product() {
 
