@@ -1,8 +1,11 @@
 package com.openmart.core.business.user.model;
 
+import javax.persistence.Entity;
+
 /**
  * Created by Nawa on 7/10/2016.
  */
+@Entity
 public class Login {
     private int loginId;
     private String username;
