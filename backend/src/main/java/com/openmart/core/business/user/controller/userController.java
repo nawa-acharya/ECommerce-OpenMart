@@ -7,24 +7,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by Nawa on 7/10/2016.
  */
-@Controller
-public class userController {
-    @Autowired
+@RestController
+public class UserController {
+   @Autowired
     private UserService userService;
-
-    @RequestMapping("/")
+/*
+    @RequestMapping(value = "/")
     public String returnHome() {
         return "This directs to the home page";
     }
 
     private User user;
-    @RequestMapping("/profile")
-    public String getUser(Model model, @PathVariable int id){
-        model.addAttribute("Users", userService.getUser(id));
+    @RequestMapping("/profile/{userName}")
+    public String getUser(Model model, @PathVariable String userName){
+        model.addAttribute("Users", userService.getUser(userName));
         return "this returns the user specified by the id";
     }
 
@@ -32,6 +33,22 @@ public class userController {
     public String getAllUser(Model model) {
         model.addAttribute("allUsers", userService.getAllUsers());
         return ("this returns all the user information");
+    }
+
+    @RequestMapping("/user/update/{userName}")
+    public String updateUser(UserService service, @PathVariable String userName) {
+        service.updateUser(userName);
+        return ("redirect:/profile/{userName}");
+    }
+
+    @RequestMapping("/user/delete/{userName}")
+    public String deleteUser(UserService service, @PathVariable String userName) {
+        service.deleteUser(userName);
+        return ("redirect:/profile/{userName}");
+    }*/
+    @RequestMapping("/control")
+    public void setText() {
+        System.out.println("Caught in controller");
     }
 
 }
