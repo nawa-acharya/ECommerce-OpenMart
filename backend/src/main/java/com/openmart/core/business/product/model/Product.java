@@ -18,8 +18,8 @@ public class Product {
     private double price;
     private String description;
     private String catagory;
-    private  byte image;
-    private  boolean isAvailable;
+    private byte image;
+    private boolean isAvailable;
 
     public byte getImage() {
         return image;

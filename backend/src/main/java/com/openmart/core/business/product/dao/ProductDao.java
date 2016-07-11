@@ -9,8 +9,12 @@ import java.util.List;
  */
 public interface ProductDao {
     public abstract List<Product> getAllProduct();
-    public  abstract void addProduct(Product pro);
-    public  abstract Product getProduct(int id);
-    public abstract void update( Product pro);
+
+    public abstract void addProduct(Product pro);
+
+    public abstract Product getProduct(int id);
+
+    public abstract void update(Product pro);
+
     public abstract void delete(int id);
 }
