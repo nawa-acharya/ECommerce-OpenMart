@@ -5,7 +5,6 @@ import com.openmart.core.business.order.model.Order;
 import com.openmart.core.business.order.model.OrderLine;
 import com.openmart.core.business.shoppingcart.dao.ShoppingCartDao;
 import com.openmart.core.business.shoppingcart.model.CartLine;
-import com.openmart.core.business.shoppingcart.model.Product;
 import com.openmart.core.business.shoppingcart.model.ShoppingCart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;

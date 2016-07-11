@@ -1,7 +1,8 @@
 package com.openmart.core.business.order.model;
 
+import com.openmart.core.business.product.model.Product;
 import com.openmart.core.business.shoppingcart.model.CartLine;
-import com.openmart.core.business.shoppingcart.model.Product;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
