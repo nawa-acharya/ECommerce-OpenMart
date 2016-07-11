@@ -3,6 +3,7 @@ package com.openmart.web.shop.controllers.shoppingcart;
 import com.openmart.core.business.order.model.Order;
 import com.openmart.core.business.shoppingcart.model.*;
 import com.openmart.core.business.shoppingcart.service.ShoppingCartService;
+import com.openmart.core.business.user.model.User;
 import com.openmart.web.shop.controllers.shoppingcart.facade.ShoppingCartController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -30,8 +31,8 @@ public class ShoppingCartControllerImpl implements ShoppingCartController {
         // TODO can be changed to get user from spring security
         User user = (User) httpServletRequest.getSession().getAttribute("user");
         if (user != null) {
-            ShoppingCart shoppingCart = user.getShoppingCart();
-            return shoppingCartService.addProductToCart(shoppingCart, cartLine);
+          //  ShoppingCart shoppingCart =  user.getShoppingCart();
+          //  return shoppingCartService.addProductToCart(shoppingCart, cartLine);
         }
         return null;
     }
@@ -42,8 +43,8 @@ public class ShoppingCartControllerImpl implements ShoppingCartController {
         // TODO can be changed to get user from spring security
         User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
-            ShoppingCart shoppingCart = user.getShoppingCart();
-            return shoppingCartService.removeProductFromCart(shoppingCart, cartLine);
+         //  ShoppingCart shoppingCart = user.getShoppingCart();
+          //  return shoppingCartService.removeProductFromCart(shoppingCart, cartLine);
         }
         return null;
     }
@@ -54,8 +55,8 @@ public class ShoppingCartControllerImpl implements ShoppingCartController {
         // TODO can be changed to get user from spring security
         User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
-            ShoppingCart shoppingCart = user.getShoppingCart();
-            return shoppingCartService.updateCart(shoppingCart, cartLine);
+          //  ShoppingCart shoppingCart = user.getShoppingCart();
+          //  return shoppingCartService.updateCart(shoppingCart, cartLine);
         }
         return null;
     }

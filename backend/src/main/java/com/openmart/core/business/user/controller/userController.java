@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by Nawa on 7/10/2016.
  */
 @RestController
-public class UserController {
+public class userController {
    @Autowired
     private UserService userService;
 /*

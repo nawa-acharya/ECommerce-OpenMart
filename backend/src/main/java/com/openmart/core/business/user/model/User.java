@@ -1,6 +1,7 @@
 package com.openmart.core.business.user.model;
 
 import com.openmart.core.business.order.model.Order;
+import com.openmart.core.business.shoppingcart.model.ShoppingCart;
 
 import javax.persistence.*;
 import java.util.List;
@@ -26,7 +27,8 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private UserImage image;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Order> products;
+    private List<Order> getOrders;
+    private ShoppingCart shoppingCart;
 
     public User() {
 
@@ -101,11 +103,19 @@ public class User {
         this.image = image;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Order> getGetOrders() {
+        return getOrders;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setGetOrders(List<Order> getOrders) {
+        this.getOrders = getOrders;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 }
