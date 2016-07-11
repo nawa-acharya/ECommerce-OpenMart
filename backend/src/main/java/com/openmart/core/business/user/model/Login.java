@@ -1,12 +1,16 @@
 package com.openmart.core.business.user.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * Created by Nawa on 7/10/2016.
  */
 @Entity
 public class Login {
+    @Id
+    @GeneratedValue
     private int loginId;
     private String username;
     private String password;
