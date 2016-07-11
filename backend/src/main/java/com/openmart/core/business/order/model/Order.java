@@ -2,7 +2,6 @@ package com.openmart.core.business.order.model;
 
 import com.openmart.core.business.Payment.model.Payment;
 import com.openmart.core.business.shoppingcart.model.Address;
-import com.openmart.core.business.shoppingcart.model.User;
 
 import javax.persistence.*;
 import java.io.Serializable;

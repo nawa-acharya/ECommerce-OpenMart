@@ -1,5 +1,7 @@
 package com.openmart.core.business.user.model;
 
+import com.openmart.core.business.order.model.Order;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private UserImage image;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Product> products;
+    private List<Order> products;
 
     public User() {
 

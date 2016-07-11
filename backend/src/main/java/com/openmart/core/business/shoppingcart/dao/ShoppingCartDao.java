@@ -1,7 +1,6 @@
 package com.openmart.core.business.shoppingcart.dao;
 
 import com.openmart.core.business.shoppingcart.model.ShoppingCart;
-import com.openmart.core.business.shoppingcart.model.User;
 
 /**
  * Created by Endalkachew on 11-Jul-16.

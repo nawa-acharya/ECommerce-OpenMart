@@ -1,11 +1,9 @@
 package com.openmart.core.business.shoppingcart.dao;
 
 import com.openmart.core.business.shoppingcart.model.ShoppingCart;
-import com.openmart.core.business.shoppingcart.model.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 /**
  * Created by Endalkachew on 11-Jul-16.
