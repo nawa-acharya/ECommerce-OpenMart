@@ -4,6 +4,7 @@ import com.openmart.core.business.order.model.Order;
 import com.openmart.core.business.shoppingcart.model.ShoppingCart;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -12,18 +13,12 @@ import java.util.List;
 @Entity
 public class User {
     @Id
-    @GeneratedValue
     private int userId;
-    private String firstName;
-    private String lastName;
-    private String email;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
-    private Role role;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Address address;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private String name;
+    @OneToOne (cascade = CascadeType.ALL)
     private Login login;
+    @Enumerated
+    private Role role = Role.ROLE_USER;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private UserImage image;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -34,13 +29,21 @@ public class User {
 
     }
 
-    public User(String firstName, String lastName, String email, Role role, Address address, Login login) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.role = role;
-        this.address = address;
+    public User(String name, Login login) {
+        this.name = name;
         this.login = login;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Role getRole() {
+        return role;
     }
 
     public int getUserId() {
@@ -51,54 +54,16 @@ public class User {
         this.userId = userId;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
     public Login getLogin() {
         return login;
     }
 
-    public UserImage getImage() {
-        return image;
+    public void setLogin(Login login) {
+        this.login = login;
     }
 
+    public void setRole(Role role) {
+        this.role = role;
     public void setImage(UserImage image) {
         this.image = image;
     }
