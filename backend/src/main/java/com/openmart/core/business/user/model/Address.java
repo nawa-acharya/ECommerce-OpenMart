@@ -10,7 +10,7 @@ public interface Address {
 
     public String getState();
 
-    public int getZip();
+    public String getZip();
 
     public int getId();
 
@@ -20,11 +20,8 @@ public interface Address {
 
     public void setState(String s);
 
-    public void setZip(int s);
+    public void setZip(String s);
 
     public void setId(int id);
 
-    public boolean isShippingAddress();
-
-    public boolean isBillingAddress();
 }
