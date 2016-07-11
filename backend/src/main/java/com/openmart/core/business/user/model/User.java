@@ -1,8 +1,5 @@
 package com.openmart.core.business.user.model;
 
-import com.openmart.core.business.order.model.Order;
-import com.openmart.core.business.shoppingcart.model.ShoppingCart;
-
 import javax.persistence.*;
 import javax.validation.Valid;
 import java.util.List;
@@ -19,11 +16,6 @@ public class User {
     private Login login;
     @Enumerated
     private Role role = Role.ROLE_USER;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private UserImage image;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Order> getOrders;
-    private ShoppingCart shoppingCart;
 
     public User() {
 
@@ -65,23 +57,14 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
-    public void setImage(UserImage image) {
-        this.image = image;
-    }
 
-    public List<Order> getGetOrders() {
-        return getOrders;
-    }
-
-    public void setGetOrders(List<Order> getOrders) {
-        this.getOrders = getOrders;
-    }
-
-    public ShoppingCart getShoppingCart() {
-        return shoppingCart;
-    }
-
-    public void setShoppingCart(ShoppingCart shoppingCart) {
-        this.shoppingCart = shoppingCart;
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", login=" + login +
+                ", role=" + role +
+                '}';
     }
 }
