@@ -18,8 +18,8 @@ public class BillingAddress implements Address {
     private String zip;
 
     public BillingAddress(String str, String c, String state, String zip) {
-        street = str;
-        city = c;
+        this.street = str;
+        this.city = c;
         this.state = state;
         this.zip = zip;
     }
@@ -70,7 +70,7 @@ public class BillingAddress implements Address {
 
     @Override
     public void setZip(String s) {
-        this.zip = zip;
+        this.zip = s;
     }
 
     @Override
@@ -80,5 +80,16 @@ public class BillingAddress implements Address {
 
     public boolean isBilling() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "BillingAddress{" +
+                "id=" + id +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' +
+                '}';
     }
 }

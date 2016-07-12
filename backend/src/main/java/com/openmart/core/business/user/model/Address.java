@@ -3,6 +3,7 @@ package com.openmart.core.business.user.model;
 /**
  * Created by Nawa on 7/9/2016.
  */
+//address interface
 public interface Address {
     public String getStreet();
 

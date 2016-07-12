@@ -1,6 +1,6 @@
 package com.openmart.core.business.user.service;
 
-import com.openmart.core.business.user.model.User;
+import com.openmart.core.business.user.model.*;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,9 +12,19 @@ import java.util.List;
 public interface UserService {
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void addUser(User user);
+
     public void deleteUser(String userName);
-    public void updateUser(int id);
+
+    public void updateUser(User user);
+
     public User getUser(String userName);
+
     public List<User> getAllUsers();
+
+    public User findUser(Login login);
+
+    public int getId(User user);
+
+    public void addUpdatesToUser(String username, BillingAddress billingAddress, ShippingAddress shippingAddress, UserImage image);
 
 }

@@ -7,10 +7,8 @@ import javax.validation.constraints.Null;
 /**
  * Created by Nawa on 7/10/2016.
  */
-@Entity
 public class Login {
-    @Id
-    private int id;
+     private int id;
     private String username;
     private String password;
 
@@ -45,5 +43,14 @@ public class Login {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Login{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

@@ -14,10 +14,12 @@ import java.util.List;
  * Created by Nawa on 7/10/2016.
  */
 @Repository
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class UserDAOImpl implements UserDAO {
     @Autowired
     private SessionFactory sf;
- @Transactional(propagation = Propagation.SUPPORTS)
+
+    @Transactional(propagation = Propagation.SUPPORTS)
     public void serSf(SessionFactory sf) {
         this.sf = sf;
     }
@@ -28,8 +30,8 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void updateUser(int userId) {
-        sf.getCurrentSession().update(userId);
+    public void updateUser(User user) {
+        sf.getCurrentSession().update(user);
     }
 
     @Override
@@ -44,15 +46,32 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public List<User> getAllUser() {
-        org.hibernate.Query query = sf.getCurrentSession().createQuery("FROM User user");
-        return query.list();
+        org.hibernate.Query query = sf.getCurrentSession().createQuery("from User user");
+        return (List<User>) query.list();
     }
 
     @Override
-    public int getIdFromUserName(String userName) {
-        Query query = sf.getCurrentSession().createQuery("FROM User user join Login login where login.userName='" + userName + "'");
+    public int getIdFromUser(User user) {
+        Query query = sf.getCurrentSession().createQuery("SELECT userId FROM User");
         return query.getFirstResult();
+//        Query query = sf.getCurrentSession().createQuery("from User user join Login login where login.userName='" + userName + "'");
+//        return query.getFirstResult();
     }
 
+    @Override
+    public User findUser(String username, String password) {
+        Query query;
+        query = sf.getCurrentSession().createQuery("from User where username= :username and password= :password");
+        query.setParameter("username", username);
+        query.setParameter("password", password);
+        return (User) query.uniqueResult();
+    }
+
+    @Override
+    public User findUserFromName(String username) {
+        Query query = sf.getCurrentSession().createQuery("FROM User WHERE username= :username");
+        query.setParameter("username", username);
+        return (User) query.uniqueResult();
+    }
 }
 

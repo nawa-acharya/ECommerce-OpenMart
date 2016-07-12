@@ -27,7 +27,6 @@ public class ShippingAddress implements Address {
     public ShippingAddress() {
     }
 
-
     @Override
     public String getStreet() {
         return street;
@@ -70,7 +69,7 @@ public class ShippingAddress implements Address {
 
     @Override
     public void setZip(String s) {
-        this.zip = zip;
+        this.zip = s;
     }
 
     @Override
@@ -80,5 +79,16 @@ public class ShippingAddress implements Address {
 
     public boolean isShipping() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "ShippingAddress{" +
+                "id=" + id +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' +
+                '}';
     }
 }
