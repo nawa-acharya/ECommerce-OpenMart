@@ -1,7 +1,7 @@
 package com.openmart.core.business.order.model;
 
 import com.openmart.core.business.Payment.model.Payment;
-import com.openmart.core.business.shoppingcart.model.Address;
+import com.openmart.core.business.user.model.ShippingAddress;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,25 +11,25 @@ import java.util.List;
 /**
  * Created by Endalkachew on 10-Jul-16.
  */
-@Entity
+@Entity(name="OrderTable")
 public class Order implements Serializable{
     @Id
     @GeneratedValue
     private int id;
 
     @OneToOne
-    private Address deliveryAddress;
+    private ShippingAddress shipping;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<OrderLine> orderLines;
 
     private OrderStatus orderStatus;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private  Date orderDate;
+    @Temporal(TemporalType.DATE)
+    private Date orderDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date deliveryDate;
+    @Temporal(TemporalType.DATE)
+    private Date expectedDeliveryDate;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Payment payment;
@@ -39,11 +39,6 @@ public class Order implements Serializable{
     public Order(){
     }
 
-    public Order(List<OrderLine> orderLines, OrderStatus orderStatus, Date orderDate) {
-        this.orderLines = orderLines;
-        this.orderStatus = orderStatus;
-        this.orderDate = orderDate;
-    }
 
     private int getId() {
         return id;
@@ -77,24 +72,24 @@ public class Order implements Serializable{
         this.orderDate = orderDate;
     }
 
-    public Date getDeliveryDate() {
-        return deliveryDate;
+    public Date getExpectedDeliveryDate() {
+        return expectedDeliveryDate;
     }
 
-    public void setDeliveryDate(Date deliveryDate) {
-        this.deliveryDate = deliveryDate;
+    public void setExpectedDeliveryDate(Date expectedDeliveryDate) {
+        this.expectedDeliveryDate = expectedDeliveryDate;
     }
 
     public void addProduct(OrderLine orderLine){
         this.orderLines.add(orderLine);
     }
 
-    public Address getDeliveryAddress() {
-        return deliveryAddress;
+    public ShippingAddress getShipping() {
+        return shipping;
     }
 
-    public void setDeliveryAddress(Address deliveryAddress) {
-        this.deliveryAddress = deliveryAddress;
+    public void setShipping(ShippingAddress shipping) {
+        this.shipping = shipping;
     }
 
     public Payment getPayment() {

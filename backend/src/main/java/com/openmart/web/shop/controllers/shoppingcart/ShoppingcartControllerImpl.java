@@ -1,6 +1,7 @@
 package com.openmart.web.shop.controllers.shoppingcart;
 
 import com.openmart.core.business.order.model.Order;
+import com.openmart.core.business.product.service.ProductService;
 import com.openmart.core.business.shoppingcart.model.*;
 import com.openmart.core.business.shoppingcart.service.ShoppingCartService;
 import com.openmart.core.business.user.model.User;

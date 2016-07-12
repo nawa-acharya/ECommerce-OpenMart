@@ -1,8 +1,6 @@
 package com.openmart.core.business.shoppingcart.service;
 
-import com.openmart.core.business.order.dao.OrderDao;
-import com.openmart.core.business.order.model.Order;
-import com.openmart.core.business.order.model.OrderLine;
+
 import com.openmart.core.business.shoppingcart.dao.ShoppingCartDao;
 import com.openmart.core.business.shoppingcart.model.CartLine;
 import com.openmart.core.business.shoppingcart.model.ShoppingCart;
@@ -23,9 +21,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
     @Autowired
     private ShoppingCartDao shoppingCartDao;
 
-    @Autowired
-    private OrderDao orderDao;
-
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public ShoppingCart getShoppingCart(int shoppingCartId) {
@@ -36,6 +31,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
     @Transactional(propagation = Propagation.REQUIRED)
     public ShoppingCart addProductToCart(ShoppingCart shoppingCart, CartLine cartLine) {
         shoppingCart.addToCartLine(cartLine);
+        shoppingCart.setTotalPrice(getTotalPrice(shoppingCart.getCartLines()));
         shoppingCartDao.update(shoppingCart);
         return shoppingCart;
     }
@@ -44,6 +40,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
     @Transactional(propagation = Propagation.REQUIRED)
     public ShoppingCart updateCart(ShoppingCart shoppingCart, CartLine cartLine) {
         shoppingCart.updateCartLine(cartLine);
+        shoppingCart.setTotalPrice(getTotalPrice(shoppingCart.getCartLines()));
         shoppingCartDao.update(shoppingCart);
         return shoppingCart;
     }
@@ -52,6 +49,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
     @Transactional(propagation = Propagation.REQUIRED)
     public ShoppingCart removeProductFromCart(ShoppingCart shoppingCart, CartLine cartLine) {
         shoppingCart.removeItemFromCart(cartLine);
+        shoppingCart.setTotalPrice(getTotalPrice(shoppingCart.getCartLines()));
         shoppingCartDao.update(shoppingCart);
         return shoppingCart;
     }
@@ -60,5 +58,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
     @Transactional(propagation = Propagation.REQUIRED)
     public List<CartLine> getCartItems(ShoppingCart shoppingCart) {
         return shoppingCart.getCartLines();
+    }
+
+    private double getTotalPrice(List<CartLine> cartLines){
+        double totalPrice = 0.0;
+        for(CartLine cartLine : cartLines){
+            totalPrice += cartLine.getProduct().getPrice() * cartLine.getQuantity();
+        }
+        return totalPrice;
     }
 }

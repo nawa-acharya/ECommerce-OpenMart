@@ -1,9 +1,6 @@
 package com.openmart.core.business.product.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Oops on 7/11/2016.
@@ -19,7 +16,9 @@ public class Product {
     private String description;
     private String catagory;
     private byte image;
-    private boolean isAvailable;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private ProductCatalogNew productCatalog;
 
     public byte getImage() {
         return image;
@@ -29,16 +28,7 @@ public class Product {
         this.image = image;
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
-    }
-
-    public void setAvailable(boolean available) {
-        isAvailable = available;
-    }
-
     public Product() {
-
     }
 
     public Product(String title, double price, String description, String catagory) {
@@ -86,6 +76,14 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public ProductCatalogNew getProductCatalog() {
+        return productCatalog;
+    }
+
+    public void setProductCatalog(ProductCatalogNew productCatalog) {
+        this.productCatalog = productCatalog;
     }
 
     @Override

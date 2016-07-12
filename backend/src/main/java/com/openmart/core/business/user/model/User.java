@@ -1,5 +1,7 @@
 package com.openmart.core.business.user.model;
 
+import com.openmart.core.business.order.model.Order;
+
 import javax.persistence.*;
 import javax.validation.Valid;
 import java.util.List;
@@ -16,6 +18,9 @@ public class User {
     private Login login;
     @Enumerated
     private Role role = Role.ROLE_USER;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Order> orders;
 
     public User() {
 
@@ -67,4 +72,24 @@ public class User {
                 ", role=" + role +
                 '}';
     }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public void addOrder(Order order){
+        if(this.orders.contains(order)){
+            orders.remove(order);
+        }
+        orders.add(order);
+    }
+
+    public boolean removeOrder(Order order){
+        return this.orders.remove(order);
+    }
+
 }

@@ -9,7 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.stereotype.Component;
 import javax.jms.Queue;
-
+/*
 @Component
 public class Producer implements CommandLineRunner {
 
@@ -29,4 +29,4 @@ public class Producer implements CommandLineRunner {
         this.jmsMessagingTemplate.convertAndSend(this.queue, msg);
     }
 
-}
+}*/

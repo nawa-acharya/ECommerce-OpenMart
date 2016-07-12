@@ -1,21 +1,25 @@
 package com.openmart.core.business.order.service;
 
-import com.openmart.core.business.Payment.model.PaymentStatus;
 import com.openmart.core.business.Payment.service.PaymentService;
-import com.openmart.core.business.order.dao.OrderDao;
+//import com.openmart.core.business.order.dao.OrderDao;
 import com.openmart.core.business.order.model.Order;
 import com.openmart.core.business.order.model.OrderLine;
 import com.openmart.core.business.order.model.OrderStatus;
-import com.openmart.core.business.shoppingcart.model.Address;
+import com.openmart.core.business.order.util.OrderException;
+import com.openmart.core.business.product.model.Product;
+import com.openmart.core.business.product.service.ProductService;
 import com.openmart.core.business.shoppingcart.model.CartLine;
-import com.openmart.core.business.shoppingcart.model.ProductService;
 import com.openmart.core.business.shoppingcart.model.ShoppingCart;
+import com.openmart.core.business.user.model.User;
+import com.openmart.core.business.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,8 +28,11 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements OrderService {
 
+    //@Autowired
+   // private OrderDao orderDao;
+
     @Autowired
-    private OrderDao orderDao;
+    private UserService userService;
 
     @Autowired
     private PaymentService paymentService;
@@ -35,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public Order createOrderFromCart(ShoppingCart shoppingCart) {
+    public Order createOrderFromCart(User user, ShoppingCart shoppingCart) {
         Order order = new Order();
         List<OrderLine> orderLines = new ArrayList<>();
         List<CartLine> cartLines = shoppingCart.getCartLines();
@@ -44,19 +51,42 @@ public class OrderServiceImpl implements OrderService {
         }
         order.setTotalPrice(getTotalPrice(orderLines));
         order.setOrderLines(orderLines);
-        return orderDao.saveOrder(order);
+
+        user.addOrder(order);
+        userService.updateUser(user);
+
+        return order;
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public Order createOrder(Order order) {
+    public Order createOrder(User user, Order order) throws OrderException {
        List<OrderLine> orderLines = order.getOrderLines();
+
+        for(OrderLine orderLine: orderLines){
+            Product product = productService.getById(orderLine.getProduct().getId());
+            if(product == null){
+                throw new OrderException("Product not found");
+            }
+            if(orderLine.getQuantity() > product.getProductCatalog().getQuantity()){
+                throw new OrderException("Requested quantity or product is not available");
+            }
+
+            orderLine.setProduct(product);
+        }
+
         double totalPrice = getTotalPrice(orderLines);
         order.setTotalPrice(totalPrice);
         if(paymentService.processPayment(totalPrice)){
             productService.updateCatalog(orderLines);
+
             order.setOrderStatus(OrderStatus.COMPLETED);
-            orderDao.saveOrder(order);
+            order.setOrderDate(new Date());
+            order.setExpectedDeliveryDate(getDemoDeliveryDate(order.getOrderDate()));
+
+            user.addOrder(order);
+            userService.updateUser(user);
+
         } else{
             order.setOrderStatus(OrderStatus.PAYMENT_FAILED);
         }
@@ -65,20 +95,31 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public void updateOrder(Order order) {
-        orderDao.updateOrder(order);
+    public void updateOrder(User user, Order order) {
+        if(user.removeOrder(order)){
+            user.addOrder(order);
+            userService.updateUser(user);
+        }
     }
 
     @Override
-    public void deleteOrder(Order order) {
-        orderDao.deleteOrder(order);
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void deleteOrder(User user, Order order) {
+        if(user.removeOrder(order)){
+            userService.updateUser(user);
+        }
     }
 
     private double getTotalPrice(List<OrderLine> orderLines){
         double totalPrice = 0.0;
         for(OrderLine orderLine : orderLines){
-            totalPrice += orderLine.getProduct().getPrice();
+            totalPrice += orderLine.getProduct().getPrice() * orderLine.getQuantity();
         }
         return totalPrice;
     }
+
+    private Date getDemoDeliveryDate(Date orderDate){
+        return new Date(orderDate.getTime() +  1000 * 60 * 60 * 24 * 7);
+    }
+
 }

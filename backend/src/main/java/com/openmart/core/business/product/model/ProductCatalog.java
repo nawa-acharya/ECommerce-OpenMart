@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by Oops on 7/11/2016.
  */
-@Entity
+/*@Entity
 public class ProductCatalog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -56,4 +56,4 @@ public class ProductCatalog {
     public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
-}
+} */

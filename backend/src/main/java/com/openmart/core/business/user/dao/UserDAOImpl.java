@@ -28,8 +28,8 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void updateUser(int userId) {
-        sf.getCurrentSession().update(userId);
+    public void updateUser(User user) {
+        sf.getCurrentSession().update(user);
     }
 
     @Override

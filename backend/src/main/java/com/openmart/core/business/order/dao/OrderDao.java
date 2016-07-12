@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Endalkachew on 11-Jul-16.
  */
-public interface OrderDao {
+/*public interface OrderDao {
 
     Order saveOrder(Order order);
 
@@ -15,4 +15,4 @@ public interface OrderDao {
 
     void deleteOrder(Order order);
 
-}
+} */

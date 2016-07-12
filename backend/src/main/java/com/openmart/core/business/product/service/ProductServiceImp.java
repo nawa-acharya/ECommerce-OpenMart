@@ -1,10 +1,11 @@
 package com.openmart.core.business.product.service;
 
-import com.openmart.core.business.product.dao.ProductCatalogDao;
+import com.openmart.core.business.order.model.OrderLine;
 import com.openmart.core.business.product.dao.ProductDao;
 import com.openmart.core.business.product.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -17,8 +18,8 @@ public class ProductServiceImp implements ProductService {
 
     @Autowired
     private ProductDao productDao;
-    @Autowired
-    private ProductCatalogDao productCatalogDao;
+   // @Autowired
+   // private ProductCatalogDao productCatalogDao;
 
     public void setProductDao(ProductDao productDao) {
         this.productDao = productDao;
@@ -56,5 +57,18 @@ public class ProductServiceImp implements ProductService {
     @Transactional
     public Product getById(int id) {
         return this.productDao.getProduct(id);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void updateCatalog(List<OrderLine> orderLines) {
+        for(OrderLine orderLine: orderLines){
+            Product product = getById(orderLine.getProduct().getId());
+            product.getProductCatalog().setQuantity(product.getProductCatalog().getQuantity() - orderLine.getQuantity());
+            if(product.getProductCatalog().getQuantity() == 0){
+                product.getProductCatalog().setAvailable(false);
+            }
+            productDao.update(product);
+        }
     }
 }

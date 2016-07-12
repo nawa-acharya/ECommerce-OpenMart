@@ -18,22 +18,15 @@ public class Payment implements Serializable {
     @GeneratedValue
     private int id;
 
-    private double ammount;
-
     private PaymentType paymentType;
 
     private PaymentStatus paymentStatus;
 
-    @OneToOne
-    private Order order;
-
     public Payment(){}
 
-    public Payment(double ammount, PaymentType paymentType, PaymentStatus paymentStatus, Order order) {
-        this.ammount = ammount;
+    public Payment(PaymentType paymentType, PaymentStatus paymentStatus) {
         this.paymentType = paymentType;
         this.paymentStatus = paymentStatus;
-        this.order = order;
     }
 
     public int getId() {
@@ -42,14 +35,6 @@ public class Payment implements Serializable {
 
     private void setId(int id) {
         this.id = id;
-    }
-
-    public double getAmmount() {
-        return ammount;
-    }
-
-    public void setAmmount(double ammount) {
-        this.ammount = ammount;
     }
 
     public PaymentType getPaymentType() {
@@ -68,11 +53,4 @@ public class Payment implements Serializable {
         this.paymentStatus = paymentStatus;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
 }

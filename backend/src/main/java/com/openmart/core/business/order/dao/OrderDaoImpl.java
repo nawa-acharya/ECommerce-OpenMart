@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Created by Endalkachew on 11-Jul-16.
  */
-@Repository
+/*@Repository
 public class OrderDaoImpl implements OrderDao {
 
     @Autowired
@@ -28,4 +28,4 @@ public class OrderDaoImpl implements OrderDao {
     public void deleteOrder(Order order) {
         sessionFactory.getCurrentSession().delete(order);
     }
-}
+}*/

@@ -1,6 +1,5 @@
 package com.openmart.core.business.product.dao;
 
-import com.openmart.core.business.product.model.ProductCatalog;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -10,7 +9,7 @@ import java.util.List;
 /**
  * Created by Oops on 7/11/2016.
  */
-@Repository
+/*@Repository
 public class ProductCatalogImp implements ProductCatalogDao {
     private SessionFactory sf;
 
@@ -53,4 +52,4 @@ public class ProductCatalogImp implements ProductCatalogDao {
         Session session = this.sf.getCurrentSession();
         session.update(productCatalog);
     }
-}
+} */

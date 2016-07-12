@@ -1,5 +1,6 @@
 package com.openmart.core.business.product.service;
 
+import com.openmart.core.business.order.model.OrderLine;
 import com.openmart.core.business.product.model.Product;
 
 import java.util.List;
@@ -9,9 +10,12 @@ import java.util.List;
  */
 
 public interface ProductService {
-public void addProduct(Product product);
+
+    public void addProduct(Product product);
     public void updateProduct(Product product);
     public List<Product> listProduct();
     public void removeProduct(int id);
-    public  Product getById(int id);
+    public Product getById(int id);
+
+    void updateCatalog(List<OrderLine> orderLines);
 }

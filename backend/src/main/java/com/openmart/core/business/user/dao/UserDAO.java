@@ -12,7 +12,7 @@ import java.util.List;
 public interface UserDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     public void addUser(User user);
-    public void updateUser(int userId);
+    public void updateUser(User user);
     public void deleteUser(int userId);
     public User getUser(int userId);
     public List<User> getAllUser();

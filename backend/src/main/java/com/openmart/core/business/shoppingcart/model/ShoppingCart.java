@@ -18,6 +18,8 @@ public class ShoppingCart implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     private List<CartLine> cartLines;
 
+    private double totalPrice;
+
     public ShoppingCart(){
     }
 
@@ -58,5 +60,11 @@ public class ShoppingCart implements Serializable {
         this.cartLines.remove(cartLine);
     }
 
+    public double getTotalPrice() {
+        return totalPrice;
+    }
 
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 }

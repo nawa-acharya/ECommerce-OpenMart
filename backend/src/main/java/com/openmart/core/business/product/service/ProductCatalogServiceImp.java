@@ -1,14 +1,12 @@
 package com.openmart.core.business.product.service;
 
-import com.openmart.core.business.product.dao.ProductCatalogDao;
-import com.openmart.core.business.product.model.ProductCatalog;
 
 import java.util.List;
 
 /**
  * Created by Oops on 7/11/2016.
  */
-public class ProductCatalogServiceImp implements ProductCatalogService {
+/*public class ProductCatalogServiceImp implements ProductCatalogService {
     private ProductCatalogDao productCatalogDao;
 
     public void setProductCatalogDao(ProductCatalogDao productCatalogDao) {
@@ -39,4 +37,4 @@ public class ProductCatalogServiceImp implements ProductCatalogService {
     public ProductCatalog getById(int id) {
         return this.productCatalogDao.getById(id);
     }
-}
+} */

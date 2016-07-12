@@ -1,9 +1,12 @@
 package com.openmart.core.business.user.service;
 
+import com.openmart.core.business.order.model.Order;
 import com.openmart.core.business.user.dao.UserDAO;
 import com.openmart.core.business.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,6 +19,7 @@ public class UserServiceImpl implements UserService {
     private UserDAO userDAO;
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public void addUser(User user) {
         System.out.println("Got here" + user.toString());
         userDAO.addUser(user);
@@ -28,8 +32,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(int id) {
-        userDAO.updateUser(id);
+    public void updateUser(User user) {
+        userDAO.updateUser(user);
     }
 
     @Override
@@ -38,7 +42,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public List<User> getAllUsers() {
-        return null;
+        return userDAO.getAllUser();
     }
+
 }
