@@ -10,25 +10,38 @@ import java.util.List;
  * Created by Nawa on 7/10/2016.
  */
 @Entity
+@SecondaryTable(name="logintable")
+                //pkJoinColumns={@PrimaryKeyJoinColumn(name="loginId", referencedColumnName="userId") })
+
 public class User {
     @Id
+    @GeneratedValue
     private int userId;
     private String name;
-    @OneToOne (cascade = CascadeType.ALL)
-    private Login login;
+    @Column(table = "logintable")
+    private String username;
+    @Column (table = "logintable")
+    private String password;
     @Enumerated
     private Role role = Role.ROLE_USER;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Order> orders;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private ShippingAddress shippingAddress;
+    @OneToOne(cascade = CascadeType.ALL)
+    private BillingAddress billingAddress;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Profile profile;
     public User() {
 
     }
 
-    public User(String name, Login login) {
+    public User(String name, String username, String password) {
         this.name = name;
-        this.login = login;
+        this.username = username;
+        this.password = password;
     }
 
     public String getName() {
@@ -51,16 +64,48 @@ public class User {
         this.userId = userId;
     }
 
-    public Login getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(Login login) {
-        this.login = login;
+    public void setUsername(String userName) {
+        this.username = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public ShippingAddress getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(ShippingAddress shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    public BillingAddress getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(BillingAddress billingAddress) {
+        this.billingAddress = billingAddress;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 
     @Override
@@ -68,8 +113,12 @@ public class User {
         return "User{" +
                 "userId=" + userId +
                 ", name='" + name + '\'' +
-                ", login=" + login +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 ", role=" + role +
+                ", shippingAddress=" + shippingAddress +
+                ", billingAddress=" + billingAddress +
+                ", profile=" + profile +
                 '}';
     }
 

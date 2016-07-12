@@ -12,21 +12,28 @@ public class ShippingAddress implements Address {
     @Id
     @GeneratedValue
     private int id;
+    private String firstName;
+    private String lastName;
     private String street;
     private String city;
     private String state;
+    private long phone;
+    private String postcode;
     private String zip;
 
-    public ShippingAddress(String str, String c, String state, String zip) {
-        street = str;
-        city = c;
+     public ShippingAddress() {
+    }
+
+    public ShippingAddress(String firstName, String lastName, String street, String city, String state, long phone, String postcode, String zip) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.street = street;
+        this.city = city;
         this.state = state;
+        this.phone = phone;
+        this.postcode = postcode;
         this.zip = zip;
     }
-
-    public ShippingAddress() {
-    }
-
 
     @Override
     public String getStreet() {
@@ -70,7 +77,7 @@ public class ShippingAddress implements Address {
 
     @Override
     public void setZip(String s) {
-        this.zip = zip;
+        this.zip = s;
     }
 
     @Override
@@ -80,5 +87,37 @@ public class ShippingAddress implements Address {
 
     public boolean isShipping() {
         return true;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public long getPhone() {
+        return phone;
+    }
+
+    public void setPhone(long phone) {
+        this.phone = phone;
+    }
+
+    public String getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
     }
 }

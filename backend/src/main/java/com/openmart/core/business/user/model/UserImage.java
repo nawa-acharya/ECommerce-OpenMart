@@ -9,6 +9,7 @@ import java.io.File;
 /**
  * Created by Nawa on 7/10/2016.
  */
+//image
 @Entity
 public class UserImage {
     @Id

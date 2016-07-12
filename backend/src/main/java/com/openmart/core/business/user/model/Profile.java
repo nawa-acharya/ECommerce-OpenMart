@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * Created by Nawa on 7/11/2016.
  */
+//user profile
 @Entity
 public class Profile {
     @Id
