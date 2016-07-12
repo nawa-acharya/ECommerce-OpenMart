@@ -18,7 +18,7 @@ public class Product {
     private byte image;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private ProductCatalogNew productCatalog;
+    private ProductCatalog productCatalog;
 
     public byte getImage() {
         return image;
@@ -78,11 +78,11 @@ public class Product {
         this.description = description;
     }
 
-    public ProductCatalogNew getProductCatalog() {
+    public ProductCatalog getProductCatalog() {
         return productCatalog;
     }
 
-    public void setProductCatalog(ProductCatalogNew productCatalog) {
+    public void setProductCatalog(ProductCatalog productCatalog) {
         this.productCatalog = productCatalog;
     }
 

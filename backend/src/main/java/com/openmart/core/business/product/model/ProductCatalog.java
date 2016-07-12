@@ -1,51 +1,37 @@
 package com.openmart.core.business.product.model;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
- * Created by Oops on 7/11/2016.
+ * Created by Endalkachew on 11-Jul-16.
  */
-/*@Entity
+@Entity
 public class ProductCatalog {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     private double quantity;
-    @OneToMany
-    @JoinTable(name = "product_catalog")
-    private List<Product> pro;
 
-    public List<Product> getPro() {
-        return pro;
+    private boolean available;
+
+    public ProductCatalog(){
     }
 
-    public ProductCatalog(double quantity, List<Product> pro) {
+    public ProductCatalog(double quantity, boolean available) {
         this.quantity = quantity;
-        this.pro = pro;
-    }
-
-    public void setPro(List<Product> pro) {
-        this.pro = pro;
+        this.available = available;
     }
 
     public int getId() {
         return id;
     }
 
-    public ProductCatalog() {
-    }
-
-    @Override
-    public String toString() {
-        return "ProductCatalog{" +
-                "id=" + id +
-                ", quantity=" + quantity +
-                ", pro=" + pro +
-                '}';
-    }
-
-    public void setId(int id) {
+    private void setId(int id) {
         this.id = id;
     }
 
@@ -56,4 +42,12 @@ public class ProductCatalog {
     public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
-} */
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+}
