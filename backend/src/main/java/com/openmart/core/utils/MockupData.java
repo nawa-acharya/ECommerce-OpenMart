@@ -1,16 +1,13 @@
 package com.openmart.core.utils;
 
 import com.openmart.core.business.product.model.Product;
-import com.openmart.core.business.product.model.ProductCatalogNew;
+import com.openmart.core.business.product.model.ProductCatalog;
 import com.openmart.core.business.product.service.ProductService;
-import com.openmart.core.business.product.service.ProductServiceImp;
 import com.openmart.core.business.user.model.Login;
 import com.openmart.core.business.user.model.User;
 import com.openmart.core.business.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.jws.soap.SOAPBinding;
 
 /**
  * Created by Endalkachew on 12-Jul-16.
@@ -29,7 +26,7 @@ public class MockUpData {
         product.setTitle("Test product 1");
         product.setPrice(100);
         product.setDescription("Description 1");
-        product.setProductCatalog(new ProductCatalogNew(10, true));
+        product.setProductCatalog(new ProductCatalog(10, true));
 
         productService.addProduct(product);
 
@@ -38,7 +35,7 @@ public class MockUpData {
         product.setTitle("Test product 2");
         product.setPrice(50);
         product.setDescription("Description 2");
-        product.setProductCatalog(new ProductCatalogNew(20, true));
+        product.setProductCatalog(new ProductCatalog(20, true));
 
         productService.addProduct(product);
     }
