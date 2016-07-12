@@ -1,0 +1,37 @@
+<!-- header -->
+<div data-ng-include=" 'partials/components/topbar.html' ">
+</div>
+<!-- / header -->
+
+
+<!-- START CONTAINER -->
+
+<div>
+
+ <!-- leftbar -->
+
+ <div  data-ng-include=" 'partials/components/leftbar.html' "></div>
+
+
+ <!-- START CONTENT -->
+ <section id="main-content">
+  <div><h1>OpenMart Application</h1></div>
+  <section class="wrapper main-wrapper" style='' ui-view>
+  </section>
+ </section>
+ <!-- END CONTENT -->
+
+ <!-- rightsidebar start-->
+ <div data-ng-include=" 'partials/components/rightbar.html' ">
+ </div>
+ <!--   <!-- rightsidebar end -->
+
+</div>
+<!-- END CONTAINER -->
+
+<!-- footer -->
+<div data-ng-include=" 'partials/components/footer.html' ">
+</div>
+<!-- / footer -->
+
+

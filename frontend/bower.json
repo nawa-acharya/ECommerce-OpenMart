@@ -1,0 +1,31 @@
+{
+  "name": "openMart",
+  "version": "0.0.1-SNAPSHOT",
+  "authors": ["Sandip"],
+  "description": "AngularJS and Bootstrap 3 - OpenMart ecommerce application",
+  "keywords": ["AngularJS","openMart","Ecommerce "
+  ],
+  "license": "OpenMart REGULAR LICENSE",
+  "homepage": "http://",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.4",
+    "angular-ui-router": "~0.2.18",
+    "angular-bootstrap": "~1.3.2",
+    "bower-jvectormap": "~1.2.2",
+    "angular-loading-bar": "~0.9.0",
+    "jquery": "~2.2.3",
+    "animate.css": "~3.5.1",
+    "bootstrap": "~3.3.5"
+  },
+  "resolutions": {
+    "angular": "~1.2.4"
+  }
+}

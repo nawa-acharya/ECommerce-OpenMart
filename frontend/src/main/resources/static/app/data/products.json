@@ -1,0 +1,20 @@
+[
+  {
+    "id": 345,
+    "title": "product A",
+    "price": 300,
+    "image": "AVC",
+    "description": "product description",
+    "category": "category",
+    "isAvailable": "true"
+  },
+  {
+    "id": 346,
+    "title": "product B",
+    "price": 200,
+    "image": "AVC",
+    "description": "product desc",
+    "category": "category1",
+    "isAvailable": "true"
+  }
+]
