@@ -45,7 +45,7 @@ public class MockUpData {
 
     public void addSampleUser(){
         Login x = new Login("x", "x");
-        User user = new User("x", x);
+        User user = new User("x", "x", "x");
 
         userService.addUser(user);
     }

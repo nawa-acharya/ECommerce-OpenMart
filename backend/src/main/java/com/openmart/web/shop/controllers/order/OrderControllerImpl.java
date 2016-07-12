@@ -42,7 +42,7 @@ public class OrderControllerImpl implements OrderController{
     }
 
     @Override
-    @RequestMapping(value = "/creat", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public @ResponseBody Order createOrder(@RequestBody Order order, HttpServletRequest request) {
         User user = securityHelper.getCurrentUserFromSession(request);
         //TODO remove
