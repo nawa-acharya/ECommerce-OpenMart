@@ -1,5 +1,7 @@
 package com.mailsender.sample.activemq;
 
+import com.mailsender.sample.mail.SenderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
@@ -13,15 +15,15 @@ import javax.annotation.PostConstruct;
 @Component
 public class Consumer {
 
-    @JmsListener(destination = "hello.queue")
-    public void receiveQueue(String text) {
-        System.out.println(text);
+    @Autowired
+    private SenderService senderService;
+
+    @JmsListener(destination = "openmart.queue")
+    public void receiveQueue(String confirmationEmail) {
+        System.out.println("Received message... Sending confirmation email");
+        senderService.sendMessage(confirmationEmail);
     }
 
-    @JmsListener(destination = "sample.queue")
-    public void receive(String text) {
-        System.out.println(text);
-    }
     @PostConstruct
     public void create(){
         System.out.println("Consumer is created");
