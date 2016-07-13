@@ -1,6 +1,7 @@
 package com.openmart.core.business.user.dao;
 
 import com.openmart.core.business.user.model.User;
+import com.openmart.core.utils.Crypto;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +9,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Nawa on 7/10/2016.
  */
+//dao repository
 @Repository
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 public class UserDAOImpl implements UserDAO {
@@ -41,18 +44,27 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User getUser(int userId) {
-        return (User) sf.getCurrentSession().get(User.class, userId);
+        User user =  (User) sf.getCurrentSession().get(User.class, userId);
+        user.setPassword(getEncryptedPassword(user.getPassword()));
+        return user;
     }
 
     @Override
     public List<User> getAllUser() {
-        org.hibernate.Query query = sf.getCurrentSession().createQuery("from User user");
-        return (List<User>) query.list();
+        Query query = sf.getCurrentSession().createQuery("from User user");
+        List<User> encryptedUsers = new ArrayList<User>();
+        List<User> users = query.list();
+        for(User user: users) {
+            user.setPassword(getEncryptedPassword(user.getPassword()));
+            encryptedUsers.add(user);
+        }
+        return encryptedUsers;
     }
 
     @Override
     public int getIdFromUser(User user) {
-        Query query = sf.getCurrentSession().createQuery("SELECT userId FROM User");
+        String username = user.getUsername();
+        Query query = sf.getCurrentSession().createQuery("select userId from User user where username= :username");
         return query.getFirstResult();
 //        Query query = sf.getCurrentSession().createQuery("from User user join Login login where login.userName='" + userName + "'");
 //        return query.getFirstResult();
@@ -61,17 +73,30 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User findUser(String username, String password) {
         Query query;
-        query = sf.getCurrentSession().createQuery("from User where username= :username and password= :password");
+        query = sf.getCurrentSession().createQuery("From User user where username= :username and password= :password");
         query.setParameter("username", username);
         query.setParameter("password", password);
-        return (User) query.uniqueResult();
+        User user = (User) query.uniqueResult();
+        user.setPassword(getEncryptedPassword(user.getPassword()));
+        return user;
     }
 
     @Override
     public User findUserFromName(String username) {
-        Query query = sf.getCurrentSession().createQuery("FROM User WHERE username= :username");
+        Query query = sf.getCurrentSession().createQuery("from User where username= :username");
         query.setParameter("username", username);
-        return (User) query.uniqueResult();
+        User user = (User) query.uniqueResult();
+        user.setPassword(getEncryptedPassword(user.getPassword()));
+        return user;
+    }
+
+    public String getEncryptedPassword(String password) {
+        try {
+            return Crypto.encrypt(password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
 
