@@ -9,7 +9,7 @@ import javax.jms.Queue;
 /**
  * Created by Sandip on 7/3/16.
  */
-@Configuration
+/*@Configuration
 public class ActiveMQConfig {
 
     public static final String OPENMART_MAIL_QUEUE = "openmart.queue";
@@ -18,4 +18,4 @@ public class ActiveMQConfig {
     public Queue helloJMSQueue() {
         return new ActiveMQQueue(OPENMART_MAIL_QUEUE);
     }
-}
+}*/

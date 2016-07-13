@@ -4,6 +4,7 @@ package com.openmart.core.activemq;
  * Created by Sandip on 7/3/16.
  */
 
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.jms.core.JmsMessagingTemplate;
@@ -13,18 +14,16 @@ import javax.jms.Queue;
 @Component
 public class Producer implements CommandLineRunner {
 
-    @Autowired
-    private JmsMessagingTemplate jmsMessagingTemplate;
 
     @Autowired
-    private Queue queue;
+    private RabbitTemplate rabbitTemplate;
 
     @Override
     public void run(String... args) throws Exception {
     }
 
     public void send(Object msg) {
-        this.jmsMessagingTemplate.convertAndSend(this.queue, msg);
+        rabbitTemplate.convertAndSend(msg);
     }
 
 
