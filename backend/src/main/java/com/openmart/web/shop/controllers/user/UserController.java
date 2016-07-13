@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by Nawa on 7/10/2016.
  */
-//controller user
-@Controller
-@CrossOrigin(origins = "http://localhost:8080")
+@RestController
+//@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping(value = "openmart/api/user")
 public class UserController {
    @Autowired
@@ -20,6 +19,7 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public @ResponseBody User registerUser(@RequestBody User user){
         System.out.println("inside register user in controller ****************************");
+        user.setProfile(new Profile());
         userService.addUser(user);
         return user;
     }
@@ -39,6 +39,8 @@ public class UserController {
     @RequestMapping(value = "profile/update/{username}", method = RequestMethod.POST)
     public @ResponseBody User updateProfile(@RequestBody Profile profile, @PathVariable String username) {
         System.out.println("inside update use details in controller **********************************");
-        return userService.getUser(username);
+        userService.addUpdatesToUser(profile, username);
+        User user = userService.getUser(username);
+        return user;
     }
 }

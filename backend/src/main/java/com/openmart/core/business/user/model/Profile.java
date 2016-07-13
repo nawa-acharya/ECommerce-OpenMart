@@ -1,7 +1,6 @@
 package com.openmart.core.business.user.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by Nawa on 7/11/2016.
@@ -11,28 +10,27 @@ public class Profile {
     @Id
     @GeneratedValue
     private int id;
-    private String firstname;
-    private String lastname;
+    private String firstname = "not set";
+    private String lastname = "not set";
+    private String dateOfBirth = "not set";
     @Lob
-    private String description;
-    @OneToOne(cascade = CascadeType.ALL)
-    private UserImage image;
-    @OneToOne(cascade = CascadeType.ALL)
-    private ShippingAddress shippingAddress;
-    @OneToOne(cascade = CascadeType.ALL)
-    private BillingAddress billingAddress;
+    private String description = "not set";
+    private String gender = "not set";
+  //  @OneToOne(cascade = CascadeType.ALL)
+    private String image = "profile.jpg";
+
 
     public Profile() {
 
     }
 
-    public Profile(UserImage image, String firstname, String lastname, String description, ShippingAddress shippingAddress, BillingAddress billingAddress) {
+    public Profile(String image, String firstname, String lastname, String description, String gender, String dateOfBirth) {
         this.image = image;
-        this.shippingAddress = shippingAddress;
-        this.billingAddress = billingAddress;
         this.firstname = firstname;
         this.lastname = lastname;
         this.description = description;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public int getId() {
@@ -43,28 +41,12 @@ public class Profile {
         this.id = id;
     }
 
-    public UserImage getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(UserImage image) {
+    public void setImage(String image) {
         this.image = image;
-    }
-
-    public ShippingAddress getShippingAddress() {
-        return shippingAddress;
-    }
-
-    public void setShippingAddress(ShippingAddress shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
-
-    public BillingAddress getBillingAddress() {
-        return billingAddress;
-    }
-
-    public void setBillingAddress(BillingAddress billingAddress) {
-        this.billingAddress = billingAddress;
     }
 
     public String getFirstname() {
@@ -89,5 +71,21 @@ public class Profile {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }
