@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * Created by Nawa on 7/10/2016.
  */
+//user dao interface
 public interface UserDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     public void addUser(User user);
