@@ -10,12 +10,12 @@ public class Profile {
     @Id
     @GeneratedValue
     private int id;
-    private String firstname;
-    private String lastname;
-    private String dateOfBirth;
+    private String firstname = "not set";
+    private String lastname = "not set";
+    private String dateOfBirth = "not set";
     @Lob
-    private String description;
-    private String gender;
+    private String description = "not set";
+    private String gender = "not set";
     @OneToOne(cascade = CascadeType.ALL)
     private UserImage image;
 
