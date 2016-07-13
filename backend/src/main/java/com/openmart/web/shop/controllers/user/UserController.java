@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
  */
 //controller user
 @Controller
-@CrossOrigin(origins = "http://localhost:8080")
+//@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping(value = "openmart/api/user")
 public class UserController {
    @Autowired
@@ -20,6 +20,7 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public @ResponseBody User registerUser(@RequestBody User user){
         System.out.println("inside register user in controller ****************************");
+        user.setProfile(new Profile());
         userService.addUser(user);
         return user;
     }
