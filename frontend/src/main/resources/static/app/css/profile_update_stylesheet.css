@@ -1,0 +1,55 @@
+body{
+    font-family: sans-serif;
+    margin-left: 200px;
+    margin-right: 100px;
+    padding: 10px;
+    background-color: aliceblue;
+    font-weight: bold;
+    font-size: 20px;
+}
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+}
+.usernameanddetails {
+    background-color: azure;
+}
+.billingaddress {
+    background-color: azure;
+}
+.shippingaddress {
+    background-color: azure;
+}
+#image{
+    background-color: cadetblue;
+    margin-bottom: 20px;
+    overflow:hidden;
+}
+
+#userDetails {
+    vertical-align:middle;
+    text-align: left;
+    float: right;
+    margin-right: 20px;
+}
+input {
+    font-size: 18px;
+    margin-bottom: 10px;
+    width: 300px;
+    margin-right: 45px;
+    font-style: italic;
+}
+#profile_update_submit {
+    width: 100px;
+    margin-left: 400px;
+    margin-top: 10px;
+    color: black;
+}
+input[type="submit"]:hover {
+    background-color: cornflowerblue;
+    color: orangered;
+}
+#default_image_id {
+    height: 200px;
+    width: 200px;
+}

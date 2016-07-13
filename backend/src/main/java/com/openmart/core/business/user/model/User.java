@@ -3,15 +3,15 @@ package com.openmart.core.business.user.model;
 import com.openmart.core.business.order.model.Order;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Nawa on 7/10/2016.
  */
 @Entity
-@SecondaryTable(name="logintable")
-                //pkJoinColumns={@PrimaryKeyJoinColumn(name="loginId", referencedColumnName="userId") })
+@SecondaryTable(name = "logintable")
+//pkJoinColumns={@PrimaryKeyJoinColumn(name="loginId", referencedColumnName="userId") })
 
 public class User {
     @Id
@@ -22,8 +22,11 @@ public class User {
     private String username;
     @Column (table = "logintable")
     private String password;
-    @Enumerated
-    private Role role = Role.ROLE_USER;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Order> orders;
@@ -34,6 +37,7 @@ public class User {
     private BillingAddress billingAddress;
     @OneToOne(cascade = CascadeType.ALL)
     private Profile profile;
+
     public User() {
 
     }
@@ -44,16 +48,17 @@ public class User {
         this.password = password;
     }
 
+    public User(String username, String password,Set<Role> roles) {
+        this.roles = roles;
+        this.username = username;
+        this.password = password;
+    }
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Role getRole() {
-        return role;
     }
 
     public int getUserId() {
@@ -78,10 +83,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 
     public ShippingAddress getShippingAddress() {
@@ -115,7 +116,6 @@ public class User {
                 ", name='" + name + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", role=" + role +
                 ", shippingAddress=" + shippingAddress +
                 ", billingAddress=" + billingAddress +
                 ", profile=" + profile +
@@ -130,15 +130,25 @@ public class User {
         this.orders = orders;
     }
 
-    public void addOrder(Order order){
-        if(this.orders.contains(order)){
+    public void addOrder(Order order) {
+        if (this.orders.contains(order)) {
             orders.remove(order);
         }
         orders.add(order);
     }
 
-    public boolean removeOrder(Order order){
+    public boolean removeOrder(Order order) {
         return this.orders.remove(order);
     }
+
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
 
 }

@@ -53,8 +53,7 @@ public class UserServiceImpl implements UserService {
     public User findUser(Login login) {
         String username = login.getUsername();
         String password = login.getPassword();
-        User user = userDAO.findUser(username, password);
-        return user;
+       return userDAO.findUser(username, password);
     }
 
     @Override
@@ -63,12 +62,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUpdatesToUser(String username, BillingAddress billingAddress, ShippingAddress shippingAddress, UserImage image) {
-       // int userId = getId(getUser(username));
+    public void addUpdatesToUser(Profile profile, String username) {
         User existingUser = userDAO.findUserFromName(username);
-        existingUser.setBillingAddress(billingAddress);
-        existingUser.setShippingAddress(shippingAddress);
-       // existingUser.setProfile(image);
+        existingUser.setProfile(profile);
         userDAO.updateUser(existingUser);
     }
+
+    @Override
+    public User findByUsername(String username) {
+        return  userDAO.findUserFromName(username);
+    }
+
 }

@@ -13,11 +13,13 @@ import java.util.List;
  * Created by user on 12-Jul-16.
  */
 @Controller
+@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping(value = "openmart/api/product")
 public class ProductControllerImpl {
 
     @Autowired
     private ProductService productService;
+
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public @ResponseBody List<Product> getProducts() {

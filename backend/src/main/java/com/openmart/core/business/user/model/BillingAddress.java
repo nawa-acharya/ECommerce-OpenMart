@@ -12,21 +12,28 @@ public class BillingAddress implements Address {
     @Id
     @GeneratedValue
     private int id;
+    private String firstName;
+    private String lastName;
     private String street;
     private String city;
     private String state;
+    private long phone;
+    private String postcode;
     private String zip;
-
-    public BillingAddress(String str, String c, String state, String zip) {
-        this.street = str;
-        this.city = c;
-        this.state = state;
-        this.zip = zip;
-    }
 
     public BillingAddress() {
     }
 
+    public BillingAddress(String firstName, String lastName, String street, String city, String state, long phone, String postcode, String zip) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.phone = phone;
+        this.postcode = postcode;
+        this.zip = zip;
+    }
 
     @Override
     public String getStreet() {
@@ -82,14 +89,35 @@ public class BillingAddress implements Address {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "BillingAddress{" +
-                "id=" + id +
-                ", street='" + street + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zip='" + zip + '\'' +
-                '}';
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public long getPhone() {
+        return phone;
+    }
+
+    public void setPhone(long phone) {
+        this.phone = phone;
+    }
+
+    public String getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
     }
 }

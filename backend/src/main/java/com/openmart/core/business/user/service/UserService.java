@@ -25,6 +25,7 @@ public interface UserService {
 
     public int getId(User user);
 
-    public void addUpdatesToUser(String username, BillingAddress billingAddress, ShippingAddress shippingAddress, UserImage image);
+    public void addUpdatesToUser(Profile profile, String username);
 
+      User findByUsername(String username);
 }
