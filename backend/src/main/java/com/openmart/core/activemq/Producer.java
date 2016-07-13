@@ -9,7 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.stereotype.Component;
 import javax.jms.Queue;
-/*
+
 @Component
 public class Producer implements CommandLineRunner {
 
@@ -21,12 +21,11 @@ public class Producer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        send("Sample message");
-        System.out.println("Message was sent to the Queue");
     }
 
-    public void send(String msg) {
+    public void send(Object msg) {
         this.jmsMessagingTemplate.convertAndSend(this.queue, msg);
     }
 
-}*/
+
+}

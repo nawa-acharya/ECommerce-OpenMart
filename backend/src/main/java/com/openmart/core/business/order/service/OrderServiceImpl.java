@@ -5,6 +5,7 @@ import com.openmart.core.business.Payment.service.PaymentService;
 import com.openmart.core.business.order.model.Order;
 import com.openmart.core.business.order.model.OrderLine;
 import com.openmart.core.business.order.model.OrderStatus;
+import com.openmart.core.business.order.util.OrderConfirmationFacade;
 import com.openmart.core.business.order.util.OrderException;
 import com.openmart.core.business.product.model.Product;
 import com.openmart.core.business.product.service.ProductService;
@@ -17,7 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -39,6 +39,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private OrderConfirmationFacade orderConfirmationFacade;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
@@ -86,6 +89,8 @@ public class OrderServiceImpl implements OrderService {
 
             user.addOrder(order);
             userService.updateUser(user);
+
+            orderConfirmationFacade.sendConfirmationEmail(user.getUsername(), order);
 
         } else{
             order.setOrderStatus(OrderStatus.PAYMENT_FAILED);

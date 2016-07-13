@@ -12,7 +12,7 @@ import javax.jms.Queue;
 @Configuration
 public class ActiveMQConfig {
 
-    public static final String OPENMART_MAIL_QUEUE = "sample.queue";
+    public static final String OPENMART_MAIL_QUEUE = "openmart.queue";
 
     @Bean
     public Queue helloJMSQueue() {
