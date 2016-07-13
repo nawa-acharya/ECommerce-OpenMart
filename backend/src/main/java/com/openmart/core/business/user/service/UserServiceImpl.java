@@ -53,8 +53,7 @@ public class UserServiceImpl implements UserService {
     public User findUser(Login login) {
         String username = login.getUsername();
         String password = login.getPassword();
-        User user = userDAO.findUser(username, password);
-        return user;
+       return userDAO.findUser(username, password);
     }
 
     @Override
