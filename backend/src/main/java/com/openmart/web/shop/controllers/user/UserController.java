@@ -3,14 +3,16 @@ package com.openmart.web.shop.controllers.user;
 import com.openmart.core.business.user.model.*;
 import com.openmart.core.business.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Nawa on 7/10/2016.
  */
 //controller user
-@RestController("openmart/api")
+@Controller
 @CrossOrigin(origins = "http://localhost:8080")
+@RequestMapping(value = "openmart/api/user")
 public class UserController {
    @Autowired
     private UserService userService;
@@ -18,6 +20,7 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public @ResponseBody User registerUser(@RequestBody User user){
         System.out.println("inside register user in controller ****************************");
+        System.out.println("user = " + user);
         userService.addUser(user);
         return user;
     }
@@ -26,6 +29,7 @@ public class UserController {
     public @ResponseBody User showUserDetails(@RequestParam String username){
         return userService.getUser(username);
     }
+
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public @ResponseBody User getUserFromUsername(@RequestBody Login login){
@@ -37,7 +41,7 @@ public class UserController {
     @RequestMapping(value = "profile/update/{username}", method = RequestMethod.POST)
     public @ResponseBody User updateProfile(@RequestBody Profile profile, @PathVariable String username) {
         System.out.println("inside update use details in controller **********************************");
-        userService.addUpdatesToUser(profile, username);
+        //userService.addUpdatesToUser(profile, username);
         return userService.getUser(username);
     }
 }
