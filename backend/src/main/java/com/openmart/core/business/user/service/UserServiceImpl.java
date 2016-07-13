@@ -68,4 +68,9 @@ public class UserServiceImpl implements UserService {
         userDAO.updateUser(existingUser);
     }
 
+    @Override
+    public User findByUsername(String username) {
+        return  userDAO.findUserFromName(username);
+    }
+
 }

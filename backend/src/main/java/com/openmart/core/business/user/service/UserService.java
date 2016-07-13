@@ -27,5 +27,5 @@ public interface UserService {
 
     public void addUpdatesToUser(Profile profile, String username);
 
-
+      User findByUsername(String username);
 }
