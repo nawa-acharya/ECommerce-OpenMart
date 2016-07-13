@@ -1,6 +1,7 @@
 package com.openmart.core.business.user.service;
 
 import com.openmart.core.business.order.model.Order;
+import com.openmart.core.business.user.Entity.Status;
 import com.openmart.core.business.user.dao.UserDAO;
 import com.openmart.core.business.user.model.*;
 import org.hibernate.Query;
@@ -63,12 +64,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUpdatesToUser(String username, BillingAddress billingAddress, ShippingAddress shippingAddress, UserImage image) {
-       // int userId = getId(getUser(username));
+    public void addUpdatesToUser(Profile profile, String username) {
         User existingUser = userDAO.findUserFromName(username);
-        existingUser.setBillingAddress(billingAddress);
-        existingUser.setShippingAddress(shippingAddress);
-       // existingUser.setProfile(image);
+        existingUser.setProfile(profile);
         userDAO.updateUser(existingUser);
+    }
+
+    @Override
+    public Status checkStatus(User user) {
+        return null;
     }
 }

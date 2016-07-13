@@ -1,5 +1,6 @@
 package com.openmart.core.business.user.service;
 
+import com.openmart.core.business.user.Entity.Status;
 import com.openmart.core.business.user.model.*;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,8 @@ public interface UserService {
 
     public int getId(User user);
 
-    public void addUpdatesToUser(String username, BillingAddress billingAddress, ShippingAddress shippingAddress, UserImage image);
+    public void addUpdatesToUser(Profile profile, String username);
+
+    public Status checkStatus(User user);
 
 }
