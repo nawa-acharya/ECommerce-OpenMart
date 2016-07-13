@@ -1,7 +1,6 @@
 package com.openmart.core.business.user.service;
 
 import com.openmart.core.business.order.model.Order;
-import com.openmart.core.business.user.Entity.Status;
 import com.openmart.core.business.user.dao.UserDAO;
 import com.openmart.core.business.user.model.*;
 import org.hibernate.Query;
@@ -70,8 +69,4 @@ public class UserServiceImpl implements UserService {
         userDAO.updateUser(existingUser);
     }
 
-    @Override
-    public Status checkStatus(User user) {
-        return null;
-    }
 }
