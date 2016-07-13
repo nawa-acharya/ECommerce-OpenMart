@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by Nawa on 7/10/2016.
  */
-//controller user
-@Controller
+@RestController
 //@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping(value = "openmart/api/user")
 public class UserController {
@@ -40,6 +39,8 @@ public class UserController {
     @RequestMapping(value = "profile/update/{username}", method = RequestMethod.POST)
     public @ResponseBody User updateProfile(@RequestBody Profile profile, @PathVariable String username) {
         System.out.println("inside update use details in controller **********************************");
-        return userService.getUser(username);
+        userService.addUpdatesToUser(profile, username);
+        User user = userService.getUser(username);
+        return user;
     }
 }
