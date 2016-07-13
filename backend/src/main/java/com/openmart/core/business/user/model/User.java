@@ -24,14 +24,8 @@ public class User {
     private String password;
     @Enumerated
     private Role role = Role.ROLE_USER;
-
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Order> orders;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private ShippingAddress shippingAddress;
-    @OneToOne(cascade = CascadeType.ALL)
-    private BillingAddress billingAddress;
     @OneToOne(cascade = CascadeType.ALL)
     private Profile profile;
     public User() {
@@ -84,22 +78,6 @@ public class User {
         this.role = role;
     }
 
-    public ShippingAddress getShippingAddress() {
-        return shippingAddress;
-    }
-
-    public void setShippingAddress(ShippingAddress shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
-
-    public BillingAddress getBillingAddress() {
-        return billingAddress;
-    }
-
-    public void setBillingAddress(BillingAddress billingAddress) {
-        this.billingAddress = billingAddress;
-    }
-
     public Profile getProfile() {
         return profile;
     }
@@ -116,8 +94,6 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
-                ", shippingAddress=" + shippingAddress +
-                ", billingAddress=" + billingAddress +
                 ", profile=" + profile +
                 '}';
     }

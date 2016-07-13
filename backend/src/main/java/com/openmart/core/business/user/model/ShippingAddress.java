@@ -7,6 +7,7 @@ import javax.persistence.Id;
 /**
  * Created by Nawa on 7/11/2016.
  */
+//shipping address
 @Entity
 public class ShippingAddress implements Address {
     @Id

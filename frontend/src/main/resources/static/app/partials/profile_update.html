@@ -1,0 +1,61 @@
+<div>
+    <h1 class="username"></h1>
+    <form method="post" enctype="multipart/form-data">
+        <div id="image">
+            <img id="default_image_id" src = "default_profile_image.jpg" alt = "Picture of a happy monkey" alt="Profile Picture"/>
+            <div id="userDetails">
+                <h1>Name</h1>
+                <h2>username</h2>
+            </div>
+        </div>
+        <div class="usernameanddetails">
+            <label for="firstname">First Name </label>
+            <input type="text" name="firstname" placeholder="First Name"/>
+            <label for="lastname">Last Name: </label>
+            <input type="text" name="lastname" placeholder="Last Name"/><br/>
+            <label for="description">Description: </label>
+            <textarea name="description" placeholder="How do you like to describe yourself?" cols="90" rows="5"></textarea><br/>
+            <label for="image"> Your Profile picture: </label>
+            <input type="file" name="image" accept="image/*">
+        </div>
+        <div class="billingaddress">
+            <h2 id="billing">Billing Address:</h2>
+            <label for="firstName">First Name:</label>
+            <input type="text" name="firstName" placeholder="First Name"/>
+            <label for="lastName">Last Name:</label>
+            <input type="text" name="lastLame" placeholder="Last Name"/><br/>
+            <label for="street">Street:</label>
+            <input type="text" name="street" placeholder="Street" /> <br/>
+            <label for="city">City:</label>
+            <input type="text" name="city" placeholder="City"/><br/>
+            <label for="state">State:</label>
+            <input type="text" name="state" placeholder="State" /><br/>
+            <label for="phone">Phone Number:</label>
+            <input type="text" name="phone" placeholder="Your phone Number" /><br/>
+            <label for="postcode">Postal Code:</label>
+            <input type="text" name="postcode" placeholder="Your post code" /><br/>
+            <label for="country">Country:</label>
+            <input type="text" name="country" placeholder="Country" /><br/>
+        </div>
+        <div class="shippingaddress">
+            <h2 id="shipping">Shipping Address:</h2>
+            <label for="firstName">First Name:</label>
+            <input type="text" name="firstName" placeholder="First Name"/><br/>
+            <label for="lastName">Last Name:</label>
+            <input type="text" name="lastLame" placeholder="Last Name"/><br/>
+            <label for="street">Street:</label>
+            <input type="text" name="street" placeholder="Street" /> <br/>
+            <label for="city">City:</label>
+            <input type="text" name="city" placeholder="City"/><br/>
+            <label for="state">State:</label>
+            <input type="text" name="state" placeholder="State" /><br/>
+            <label for="phone">Phone Number:</label>
+            <input type="text" name="phone" placeholder="Your phone Number" /><br/>
+            <label for="postcode">Postal Code:</label>
+            <input type="text" name="postcode" placeholder="Your post code" /><br/>
+            <label for="country">Country:</label>
+            <input type="text" name="country" placeholder="Country" /><br/>
+        </div>
+        <input id="profile_update_submit" type="submit" value="Update" />
+    </form>
+</div>
