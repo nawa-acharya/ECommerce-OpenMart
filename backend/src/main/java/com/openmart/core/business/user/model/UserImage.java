@@ -17,8 +17,13 @@ public class UserImage {
     private int imageId;
     @Lob
     private File image;
+    private byte[] byteImage;
     public UserImage() {
 
+    }
+
+    public UserImage(File image) {
+        this.image = image;
     }
 
     public int getImageId() {
@@ -35,6 +40,14 @@ public class UserImage {
 
     public void setImage(File image) {
         this.image = image;
+    }
+
+    public byte[] getByteImage() {
+        return byteImage;
+    }
+
+    public void setByteImage(byte[] byteImage) {
+        this.byteImage = byteImage;
     }
 }
 

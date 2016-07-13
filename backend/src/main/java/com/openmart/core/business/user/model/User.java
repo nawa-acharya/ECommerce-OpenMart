@@ -27,10 +27,8 @@ public class User {
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
-
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Order> orders;
-
     @OneToOne(cascade = CascadeType.ALL)
     private ShippingAddress shippingAddress;
     @OneToOne(cascade = CascadeType.ALL)
@@ -39,7 +37,6 @@ public class User {
     private Profile profile;
 
     public User() {
-
     }
 
     public User(String name, String username, String password) {
