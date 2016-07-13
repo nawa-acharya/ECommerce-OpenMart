@@ -16,19 +16,21 @@ public class Profile {
     @Lob
     private String description = "not set";
     private String gender = "not set";
-    @OneToOne(cascade = CascadeType.ALL)
-    private UserImage image;
+  //  @OneToOne(cascade = CascadeType.ALL)
+    private String image = "profile.jpg";
 
 
     public Profile() {
 
     }
 
-    public Profile(UserImage image, String firstname, String lastname, String description) {
+    public Profile(String image, String firstname, String lastname, String description, String gender, String dateOfBirth) {
         this.image = image;
         this.firstname = firstname;
         this.lastname = lastname;
         this.description = description;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public int getId() {
@@ -39,11 +41,11 @@ public class Profile {
         this.id = id;
     }
 
-    public UserImage getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(UserImage image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
