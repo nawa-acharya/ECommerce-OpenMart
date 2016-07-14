@@ -1,60 +1,60 @@
 
-<div class="container">
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span8">
-                <!-- items -->
-                <table>
-                    <!-- header -->
-                    <tr>
-                        <td><b>Item</b></td>
-                        <td ><b>Quantity</b></td>
-                        <td class="tdRight"><b>Price</b></td>
-                        <td />
-                    </tr>
 
-                    <!-- empty cart message -->
-                    <tr ng-hide="cart.getTotalCount() > 0" >
-                        <td class="tdCenter" colspan="4">
-                            Your cart is empty.
-                        </td>
-                    </tr>
+    <!--<div class="container-fluid">-->
+        <!--<div class="row-fluid">-->
+            <!--<div class="span8">-->
+                <!--&lt;!&ndash; items &ndash;&gt;-->
+                <!--<table>-->
+                    <!--&lt;!&ndash; header &ndash;&gt;-->
+                    <!--<tr>-->
+                        <!--<td><b>Item</b></td>-->
+                        <!--<td ><b>Quantity</b></td>-->
+                        <!--<td class="tdRight"><b>Price</b></td>-->
+                        <!--<td />-->
+                    <!--</tr>-->
 
-                    <!-- cart items -->
-                    <tr ng-repeat="item in cart.items | orderBy:'name'">
-                        <td>{{item.title}}</td>
-                        <td class="tdCenter">
-                            <div class="input-append">
-                                <!-- use type=tel instead of  to prevent spinners -->
-                                <input
-                                        class="span3 text-center" type="tel"
-                                        ng-model="item.quantity"
-                                        ng-change="cart.saveItems()" />
-                                <button
-                                        class="btn btn-success" type="button"
-                                        ng-disabled="item.quantity >= 1000"
-                                        ng-click="cart.addItem(item.id, item.title, item.price, +1)">+</button>
-                                <button
-                                        class="btn btn-inverse" type="button"
-                                        ng-disabled="item.quantity <= 1"
-                                        ng-click="cart.addItem(item.id, item.title, item.price, -1)">-</button>
-                            </div>
-                        </td>
-                        <td class="tdRight">{{item.price * item.quantity | currency}}</td>
-                        <td class="tdCenter" title="remove from cart">
-                            <a href="" ng-click="cart.addItem(item.id, item.title, item.price, -10000000)" >
-                                <i class="icon-remove" />
-                            </a>
-                        </td>
-                    </tr>
-                    <!-- footer -->
-                    <tr class="well">
-                        <td><b>Total</b></td>
-                        <td class="tdCenter"><b>{{cart.getTotalCount()}}</b></td>
-                        <td class="tdRight"><b>{{cart.getTotalPrice() | currency}}</b></td>
-                        <td />
-                    </tr>
-                </table>
+                    <!--&lt;!&ndash; empty cart message &ndash;&gt;-->
+                    <!--<tr ng-hide="cart.getTotalCount() > 0" >-->
+                        <!--<td class="tdCenter" colspan="4">-->
+                            <!--Your cart is empty.-->
+                        <!--</td>-->
+                    <!--</tr>-->
+
+                    <!--&lt;!&ndash; cart items &ndash;&gt;-->
+                    <!--<tr ng-repeat="item in cart.items | orderBy:'name'">-->
+                        <!--<td>{{item.title}}</td>-->
+                        <!--<td class="tdCenter">-->
+                            <!--<div class="input-append">-->
+                                <!--&lt;!&ndash; use type=tel instead of  to prevent spinners &ndash;&gt;-->
+                                <!--<input-->
+                                        <!--class="span3 text-center" type="tel"-->
+                                        <!--ng-model="item.quantity"-->
+                                        <!--ng-change="cart.saveItems()" />-->
+                                <!--<button-->
+                                        <!--class="btn btn-success" type="button"-->
+                                        <!--ng-disabled="item.quantity >= 1000"-->
+                                        <!--ng-click="cart.addItem(item.id, item.title, item.price, +1)">+</button>-->
+                                <!--<button-->
+                                        <!--class="btn btn-inverse" type="button"-->
+                                        <!--ng-disabled="item.quantity <= 1"-->
+                                        <!--ng-click="cart.addItem(item.id, item.title, item.price, -1)">-</button>-->
+                            <!--</div>-->
+                        <!--</td>-->
+                        <!--<td class="tdRight">{{item.price * item.quantity | currency}}</td>-->
+                        <!--<td class="tdCenter" title="remove from cart">-->
+                            <!--<a href="" ng-click="cart.addItem(item.id, item.title, item.price, -10000000)" >-->
+                                <!--<i class="icon-remove" />-->
+                            <!--</a>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--&lt;!&ndash; footer &ndash;&gt;-->
+                    <!--<tr class="well">-->
+                        <!--<td><b>Total</b></td>-->
+                        <!--<td class="tdCenter"><b>{{cart.getTotalCount()}}</b></td>-->
+                        <!--<td class="tdRight"><b>{{cart.getTotalPrice() | currency}}</b></td>-->
+                        <!--<td />-->
+                    <!--</tr>-->
+                <!--</table>-->
 
                 <div class="row marketing">
                     <div class="col-lg-6">
@@ -155,5 +155,4 @@
 
 <a ng-click="placeOrder()" class="btn btn-warning btn-lg btn-block" role="button"><span class="glyphicon glyphicon-play"></span> PLACE AN ORDER</a>
 
-</div>
-</div>
+

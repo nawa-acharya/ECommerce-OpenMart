@@ -55,10 +55,8 @@
                     </td>
                 </tr>
 
-                <td class="tdCenter" title="Clear Cart">
-                    <a  ng-hide="item.quantity <= 1" ng-click="cart.clearItems()" >Clear Cart
-                        <i class="glyphicon-star-empty"/>
-                    </a>
+                <td title="Clear Cart" ng-hide="cart.items.length < 1" ng-click="cart.clearItems()">
+                    <a>Clear All Items</a>   <i class="glyphicon-star-empty"/>
                 </td>
                 <!-- footer -->
                 <tr class="well">
