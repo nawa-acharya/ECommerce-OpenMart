@@ -1,42 +1,66 @@
-<div >
-    <div  ng-controller="LoginFormController">
-        <div id="login">
-            <h1>Login</h1>
+<!--<div >-->
+    <!--<div  ng-controller="LoginFormController">-->
+        <!--<div id="login">-->
+            <!--<h1>Login</h1>-->
 
-            <form name="form" class="form-validation">
+            <!--<form name="form" class="form-validation">-->
 
-                <div ng-show="authError">
-                    {{authError}}
+                <!--<div ng-show="authError">-->
+                    <!--{{authError}}-->
+                <!--</div>-->
+
+                <!--<p>-->
+                    <!--<input type="email" name="email" id="user_email" class="input" ng-model="user.email" placeholder="Email" required/></label>-->
+                <!--</p>-->
+                <!--<p>-->
+                    <!--<input type="password" name="pwd" id="user_password" class="input" ng-model="user.password" placeholder="Password" required/></label>-->
+                <!--</p>-->
+                <!--<p>-->
+
+                    <!--<label for="rememberme">-->
+                        <!--<input type="checkbox" value="forever" name="rememberme" checked id="rememberme">-->
+                        <!--<i></i> Remember me-->
+                    <!--</label>-->
+                <!--</p>-->
+
+                <!--<p>-->
+                    <!--<button type="submit" ng-click="login()" ng-disabled='form.$invalid'>Sign In</button>-->
+                <!--</p>-->
+            <!--</form>-->
+
+            <!--<p>-->
+                <!--<a ui-sref="access.register" title="Sign Up">Sign Up</a>-->
+            <!--</p>-->
+
+
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+
+<nav class="navbar navbar-default" ng-controller="LoginFormController">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">OpenMart</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <form id="signin" class="navbar-form navbar-right" role="form">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input id="email" type="email" class="form-control" ng-model="user.email" name="email" value="" placeholder="Email Address">
                 </div>
 
-                <p>
-                    <input type="email" name="email" id="user_email" class="input" ng-model="user.email" placeholder="Email" required/></label>
-                </p>
-                <p>
-                    <input type="password" name="pwd" id="user_password" class="input" ng-model="user.password" placeholder="Password" required/></label>
-                </p>
-                <p>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input id="password" type="password" class="form-control" name="password" value="" ng-model="user.password" placeholder="Password">
+                </div>
 
-                    <label for="rememberme">
-                        <input type="checkbox" value="forever" name="rememberme" checked id="rememberme">
-                        <i></i> Remember me
-                    </label>
-                </p>
-
-                <p>
-                    <button type="submit" ng-click="login()" ng-disabled='form.$invalid'>Sign In</button>
-                </p>
+                <button type="submit" class="btn btn-primary" ng-click="login()">Login</button>
             </form>
-
-            <p>
-                <a ui-sref="access.register" title="Sign Up">Sign Up</a>
-            </p>
-
 
         </div>
     </div>
-</div>
-
-
+</nav>
 
 

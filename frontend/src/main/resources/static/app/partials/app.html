@@ -1,37 +1,138 @@
-<!-- header -->
-<div data-ng-include=" 'partials/components/topbar.html' ">
-</div>
-<!-- / header -->
+<!--&lt;!&ndash; header &ndash;&gt;-->
+
+<!--<div data-ng-include=" 'partials/components/topbar.html' ">-->
+<!--</div>-->
+<!--&lt;!&ndash; / header &ndash;&gt;-->
 
 
-<!-- START CONTAINER -->
+<!--&lt;!&ndash; START CONTAINER &ndash;&gt;-->
 
-<div>
+<!--<div>-->
 
- <!-- leftbar -->
+ <!--&lt;!&ndash; leftbar &ndash;&gt;-->
 
- <div  data-ng-include=" 'partials/components/leftbar.html' "></div>
+ <!--<div  data-ng-include=" 'partials/components/leftbar.html' "></div>-->
 
 
- <!-- START CONTENT -->
- <section id="main-content">
-  <div><h1>OpenMart Application</h1></div>
-  <section class="wrapper main-wrapper" style='' ui-view>
-  </section>
- </section>
- <!-- END CONTENT -->
+ <!--&lt;!&ndash; START CONTENT &ndash;&gt;-->
+ <!--<section id="main-content">-->
+  <!--<div><h1>OpenMart Application</h1></div>-->
+  <!--<section class="wrapper main-wrapper" style='' ui-view>-->
+  <!--</section>-->
+ <!--</section>-->
+ <!--&lt;!&ndash; END CONTENT &ndash;&gt;-->
 
- <!-- rightsidebar start-->
- <div data-ng-include=" 'partials/components/rightbar.html' ">
- </div>
- <!--   <!-- rightsidebar end -->
+ <!--&lt;!&ndash; rightsidebar start&ndash;&gt;-->
+ <!--<div data-ng-include=" 'partials/components/rightbar.html' ">-->
+ <!--</div>-->
+ <!--&lt;!&ndash;   &lt;!&ndash; rightsidebar end &ndash;&gt;-->
 
-</div>
-<!-- END CONTAINER -->
+<!--</div>-->
+<!--&lt;!&ndash; END CONTAINER &ndash;&gt;-->
 
-<!-- footer -->
-<div data-ng-include=" 'partials/components/footer.html' ">
-</div>
+<!--&lt;!&ndash; footer &ndash;&gt;-->
+<!--<div data-ng-include=" 'partials/components/footer.html' ">-->
+<!--</div>-->
 <!-- / footer -->
+
+
+<nav id="navbar-white" class="navbar navbar-default navbar-fixed-top" role="navigation">
+ <div class="navbar-header">
+  <button href="#menu-toggle" class="slidebar-toggle" id="menu-toggle">
+   <span class="sr-only">OpenMart</span>
+   <span class="icon-bar"></span>
+   <span class="icon-bar"></span>
+   <span class="icon-bar"></span>
+  </button>
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+   <span class="sr-only">Toggle navigation</span>
+   <span class="icon-bar"></span>
+   <span class="icon-bar"></span>
+   <span class="icon-bar"></span>
+  </button>
+  <span><a class="navbar-brand" href="/">OpenMart</a></span>
+ </div>
+
+ <div class="navbar-collapse collapse">
+
+  <div class="container-fluid">
+   <ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+     <input type="text" ng-model="search" class="form-control" id="aa" name="aa" placeholder="Search">
+    </li>
+
+    <li class="dropdown">
+     <a ui-sref="access.register" >Register</a>
+    </li>
+    <!--<li class="dropdown">-->
+     <!--<a ui-sref="access.login" class="glyphicon glyphicon-user" ng-show="{{!loggedUser}}" /> Login</a>-->
+    <!--</li>-->
+    <!--<li class="dropdown">-->
+     <!--<a ui-sref="access.logout" class="glyphicon glyphicon-user" ng-show="{{loggedUser}}" /> Logout</a>-->
+    <!--</li>-->
+    <li class="dropdown">
+     <a ui-sref="access.login" class="glyphicon glyphicon-user" ng-show="can('login')" /> Login</a>
+    </li>
+    <li class="dropdown">
+     <a ui-sref="access.logout" class="glyphicon glyphicon-user" ng-show="can('logout')" />  <i>{{loggedUser.name}} </i>Logout</a>
+    </li>
+   </ul>
+  </div>
+ </div>
+</nav>
+
+
+
+<div id="wrapper">
+ <!-- Sidebar -->
+ <div id="slidebar-white" class="slidebar-nav">
+  <nav id="navbar-white" class="navbar navbar-default" role="navigation">
+   <ul class="nav navbar-nav">
+
+    <li class="dropdown">
+     <a ui-sref="openmart.home.profile" ng-show="can('manage_profile')" ><i class="glyphicon glyphicon-th-list" ></i> Profile</a>
+    </li>
+    <li class="dropdown">
+     <a ui-sref="openmart.home.store"><i class="glyphicon glyphicon-th-list" ></i> Store</a>
+    </li>
+    <li class="dropdown">
+     <a ui-sref="openmart.home.cart"><i class="glyphicon glyphicon-th-list" ></i> Cart</a>
+    </li>
+
+    <li class="dropdown">
+     <a ui-sref="openmart.home.product-add"  ng-show="can('manage_product')"/> <i class="glyphicon glyphicon-th-list" ></i>Add Product</a>
+    </li>
+
+
+    <li class="dropdown">
+     <a ui-sref="openmart.home.checkout"  ng-show="can('checkout')" /> <i class="glyphicon glyphicon-th-list" ></i>Checkout</a>
+    </li>
+
+
+    <!--<li class="dropdown">-->
+    <!--<a ui-sref="openmart.home.profile" ><i class="glyphicon glyphicon-th-list" ></i> Profile</a>-->
+    <!--</li>-->
+
+    <!--<li class="dropdown">-->
+     <!--<a ui-sref="openmart.home.product-add" class="glyphicon glyphicon-tags "/> Add a Product</a>-->
+    <!--</li>-->
+    <!--<li class="dropdown">-->
+     <!--<a ui-sref="openmart.home.cart" class="glyphicon glyphicon-tags"/> Cart</a>-->
+    <!--</li>-->
+    <!--<li class="dropdown">-->
+     <!--<a ui-sref="openmart.home.checkout" class="glyphicon glyphicon-tags"/> Checkout</a>-->
+    <!--</li>-->
+
+   </ul>
+  </nav><!--/.navbar -->
+ </div><!--/.sidebar-nav -->
+
+
+ <!-- Page Content -->
+ <main id="page-wrapper6">
+  <ui-view></ui-view>
+ </main>
+</div><!-- /#wrapper -->
+
 
 

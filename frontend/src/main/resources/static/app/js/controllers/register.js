@@ -1,9 +1,10 @@
 'use strict';
 
 // signup controller
-app.controller('RegisterFormController', ['$rootScope','$scope', '$http', '$state', function($rootScope,$scope, $http, $state) {
+app.controller('RegisterFormController', ['$rootScope','$scope', '$http', '$state', 'AclService', function($rootScope,$scope, $http, $state,AclService) {
     $scope.user = {};
     $scope.authError = null;
+    $scope.can = AclService.can;
     $scope.register = function() {
       $scope.authError = null;
       // Try to create

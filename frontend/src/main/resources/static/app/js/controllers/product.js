@@ -3,10 +3,11 @@
  */
 
 
-function productController($http,$scope,$rootScope,DataService,$state){
+function productController($http,$scope,$rootScope,DataService,$state,AclService){
     $scope.product=Product;
     $scope.save = save;
     $scope.cancel=cancel;
+    $scope.can = AclService.can;
     function save(){
         console.log($scope.product)
         var prod = new Product(1,

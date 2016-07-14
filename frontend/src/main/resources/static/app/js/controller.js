@@ -3,7 +3,9 @@
 // the storeController contains two objects:
 // - store: contains the product list
 // - cart: the shopping cart object
-function storeController($scope, $stateParams, DataService, $http,$state,$rootScope) {
+function storeController($scope, $stateParams, DataService, $http,$state,$rootScope,AclService) {
+    $scope.can = AclService.can;
+    $rootScope.can = AclService.can;
 
     // get store and cart from service
     //$http.get('data/products.json').success(function(data){

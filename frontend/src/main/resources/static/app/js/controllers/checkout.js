@@ -3,11 +3,13 @@
  */
 
 
-function checkoutController($http, $scope, $rootScope, DataService,$state) {
+function checkoutController($http, $scope, $rootScope, DataService,$state,AclService) {
     $scope.shipping = Shipping;
     $scope.payment = Payment;
     $scope.placeOrder = placeOrder
     $scope.cart = DataService.cart
+    $scope.can = AclService.can;
+
 
     function placeOrder() {
         var orderLines = [];
@@ -30,17 +32,15 @@ function checkoutController($http, $scope, $rootScope, DataService,$state) {
             .then(function(response) {
                 if ( !response.data) {
                     $scope.message = 'Order couldnot be placed';
-                    $state.go('openmart.home.profile');
+                    $state.go('openmart.home.checkout.thankyou');
 
                 }else{
-                    $state.go('openmart.home.profile');
+                    $state.go('openmart.home.checkout.thankyou');
                 }
             }, function(x) {
                 $scope.message = 'Server Error';
             });
     }
-
-
     function Shipping(firstName, lastName, address, city, phone, postCode, country) {
         this.firstName = firstName;
         this.lastName = lastName;
