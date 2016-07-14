@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -23,7 +24,6 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public void addUser(User user) {
-        System.out.println("Got here" + user.toString());
         userDAO.addUser(user);
     }
 
@@ -62,15 +62,30 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUpdatesToUser(Profile profile, String username) {
-        User existingUser = userDAO.findUserFromName(username);
+    public User addUpdatesToUser(User user) {
+        /*User existingUser = userDAO.findUserFromName(username);
         existingUser.setProfile(profile);
-        userDAO.updateUser(existingUser);
+        userDAO.updateUser(existingUser);*/
+        try {
+            int id = userDAO.getIdFromUser(user);
+            User aUser = userDAO.getUser(id);
+            aUser.setProfile(user.getProfile());
+            userDAO.updateUser(aUser);
+            return aUser;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
     @Override
     public User findByUsername(String username) {
         return  userDAO.findUserFromName(username);
+    }
+
+    public User setDefaultRole(User user){
+        //user.setRoles();
+        return user;
     }
 
 }

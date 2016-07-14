@@ -32,17 +32,17 @@ public class Role {
         this.role = role;
     }
 
-    public Set<User> getUsers() {
+/*    public Set<User> getUsers() {
         return users;
     }
 
     public void setUsers(Set<User> users) {
         this.users = users;
-    }
+    }*/
 
     private String role;
 
-    @ManyToMany(mappedBy = "roles",fetch = FetchType.LAZY)
-    private Set<User> users;
+/*    @ManyToMany(mappedBy = "roles",fetch = FetchType.LAZY)
+    private Set<User> users*/;
 
 }

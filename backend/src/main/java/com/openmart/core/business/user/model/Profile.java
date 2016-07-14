@@ -17,14 +17,14 @@ public class Profile {
     private String description = "not set";
     private String gender = "not set";
   //  @OneToOne(cascade = CascadeType.ALL)
-    private String image = "profile.jpg";
+    private String image = "profile";
 
 
     public Profile() {
 
     }
 
-    public Profile(String image, String firstname, String lastname, String description, String gender, String dateOfBirth) {
+    public Profile(String firstname, String lastname, String description, String gender, String dateOfBirth, String image) {
         this.image = image;
         this.firstname = firstname;
         this.lastname = lastname;
