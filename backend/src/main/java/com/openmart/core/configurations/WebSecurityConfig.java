@@ -23,16 +23,20 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      AppUserDetailService userDetailService;
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailService);
+        //TODO commented to disable security
+        //auth.userDetailsService(userDetailService);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        //TODO remove and uncomment Added to disable security.
+        http.authorizeRequests().anyRequest().permitAll();
+        http.csrf().disable();
+       /* http
                 .httpBasic().and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/**").hasRole("CUSTOMER");
+                .antMatchers(HttpMethod.GET, "/**").hasRole("CUSTOMER"); */
     }
 
 

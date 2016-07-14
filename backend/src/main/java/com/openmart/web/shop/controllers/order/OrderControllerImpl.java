@@ -53,7 +53,10 @@ public class OrderControllerImpl implements OrderController{
             }catch (OrderException ex){
                 System.err.println(ex.getMessage());
             }
+        }else{
+            System.out.println("Error user not found");
         }
+
         return null;
     }
 
