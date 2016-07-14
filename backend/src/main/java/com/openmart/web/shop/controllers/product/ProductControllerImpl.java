@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -26,6 +27,13 @@ public class ProductControllerImpl {
         return productService.listProduct();
     }
 
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    @ResponseBody
+    public Principal currentUserName(Principal principal) {
+        return principal;
+    }
+
+    @CrossOrigin(origins = "http://localhost:8080")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void addProduct(@RequestBody Product product) {

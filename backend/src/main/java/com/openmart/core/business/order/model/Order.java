@@ -17,7 +17,7 @@ public class Order implements Serializable{
     @GeneratedValue
     private int id;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private ShippingAddress shipping;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

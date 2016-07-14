@@ -59,7 +59,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public Order createOrder(User user, Order order) throws OrderException {
        List<OrderLine> orderLines = order.getOrderLines();
 

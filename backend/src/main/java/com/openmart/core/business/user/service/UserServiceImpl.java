@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -83,6 +82,10 @@ public class UserServiceImpl implements UserService {
         return  userDAO.findUserFromName(username);
     }
 
+    @Override
+    public User findByUserId(int userId) {
+        return  userDAO.getUser(userId);
+    }
     public User setDefaultRole(User user){
         //user.setRoles();
         return user;

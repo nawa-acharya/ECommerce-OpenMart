@@ -16,7 +16,7 @@ public interface OrderController {
 
     Order createNewOrderFromCart(ShoppingCart shoppingCart, HttpServletRequest request);
 
-    Order createOrder(Order order, HttpServletRequest request);
+   Order createOrder(Order order ,int userId);
 
     void updateOrder(Order order, HttpServletRequest request);
 

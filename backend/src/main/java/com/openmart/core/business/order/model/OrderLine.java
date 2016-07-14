@@ -2,7 +2,7 @@ package com.openmart.core.business.order.model;
 
 import com.openmart.core.business.product.model.Product;
 import com.openmart.core.business.shoppingcart.model.CartLine;
-
+import javax.persistence.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +20,7 @@ public class OrderLine implements Serializable {
     @GeneratedValue
     private int id;
 
-    @OneToOne
+    @OneToOne(cascade= CascadeType.ALL)
     private Product product;
 
     private int quantity;
