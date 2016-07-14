@@ -3,6 +3,7 @@ package com.openmart.core.business.user.service;
 import com.openmart.core.business.order.model.Order;
 import com.openmart.core.business.user.dao.UserDAO;
 import com.openmart.core.business.user.model.*;
+import com.openmart.core.utils.Logging.Logger;
 import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,11 +20,18 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDAO userDAO;
+    @Autowired
+    private Logger logger;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public void addUser(User user) {
-        userDAO.addUser(user);
+        if(!checkIfUserExists(user))
+            userDAO.addUser(user);
+        else {
+            logger.log("User name already exists");
+            System.exit(0);
+        }
     }
 
     @Override
@@ -82,13 +90,31 @@ public class UserServiceImpl implements UserService {
         return  userDAO.findUserFromName(username);
     }
 
-    @Override
-    public User findByUserId(int userId) {
-        return  userDAO.getUser(userId);
-    }
     public User setDefaultRole(User user){
         //user.setRoles();
         return user;
     }
 
+    @Override
+    public User findByUserId(int userId) {
+        return userDAO.getUser(userId);
+    }
+
+    @Override
+    public boolean checkIfUserExists(User user) {
+        String tempUserName = user.getUsername();
+        User existingUser = userDAO.findUserFromName(tempUserName);
+        if(existingUser.getUsername().equalsIgnoreCase(tempUserName))
+            return true;
+        else
+            return false;
+    }
+
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+
+    public void setLogger(Logger logger) {
+        this.logger = logger;
+    }
 }

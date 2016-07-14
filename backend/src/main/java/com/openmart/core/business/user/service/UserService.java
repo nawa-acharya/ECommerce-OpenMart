@@ -28,5 +28,7 @@ public interface UserService {
 
     public User addUpdatesToUser(User user);
 
-      User findByUsername(String username);
+    public User findByUsername(String username);
+
+    public boolean checkIfUserExists(User user);
 }
