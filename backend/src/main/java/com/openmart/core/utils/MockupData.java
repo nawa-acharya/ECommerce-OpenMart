@@ -28,19 +28,11 @@ public class MockUpData {
 
     public  void addSampleProducts(){
         Product product = new Product();
-        product.setTitle("Doughnuts");
-        product.setPrice(1.99);
-        product.setDescription("Tasty small sized doughnuts");
+        product.setTitle("Guitar");
+        product.setPrice(25);
+        product.setDescription("Acoustic, , 6 string, a Yamaha product" );
         product.setProductCatalog(new ProductCatalog(10, true));
-
-        productService.addProduct(product);
-
-        product = new Product();
-
-        product.setTitle("Bakery");
-        product.setPrice(50);
-        product.setDescription("Fresh bakery items");
-        product.setProductCatalog(new ProductCatalog(20, true));
+        product.setImage(1);
 
         productService.addProduct(product);
 
@@ -48,17 +40,30 @@ public class MockUpData {
 
         product.setTitle("Diet Coke");
         product.setPrice(2);
-        product.setDescription("Diet Coke contains no added sugar, 0% carbondioxide");
+        product.setDescription("Contains no added sugar, 0% carbondioxide, Sugar Free Drink, A coca cola product");
         product.setProductCatalog(new ProductCatalog(25, true));
+        product.setImage(2);
 
         productService.addProduct(product);
 
         product = new Product();
 
-        product.setTitle("Pure Sugar");
-        product.setPrice(2.99);
-        product.setDescription("15 calories per serving");
+        product.setTitle("Nescafe Clasico");
+        product.setPrice(6.65);
+        product.setDescription("Good food, Good life, Nestle, Rich, bld flavor in every cup.");
         product.setProductCatalog(new ProductCatalog(20, true));
+        product.setImage(3);
+
+        productService.addProduct(product);
+
+
+        product = new Product();
+
+        product.setTitle("Axe- Daily Fragrance");
+        product.setPrice(2.99);
+        product.setDescription("Unique premium daily fragrance to keep you smelling great all day or all night");
+        product.setProductCatalog(new ProductCatalog(20, true));
+        product.setImage(4);
 
         productService.addProduct(product);
 
@@ -66,8 +71,9 @@ public class MockUpData {
 
         product.setTitle("Head and Shoulders");
         product.setPrice(2.99);
-        product.setDescription("anti dandruff shampoo");
+        product.setDescription("anti dandruff shampoo + conditioner, formerly 'hair endurance', cleans to restore fullness to thinning hair");
         product.setProductCatalog(new ProductCatalog(30, true));
+        product.setImage(5);
 
         productService.addProduct(product);
     }
@@ -83,23 +89,24 @@ public class MockUpData {
         userService.addUser(admin);
 
 
-        User user1 = new User("Lionel Messi", "user1@gmail.com", "pass1");
+        User user1 = new User("Nawa Raj", "user1@gmail.com", "pass1");
 
         Set<Role> user1Roles = new HashSet<Role>();
         user1Roles.add(new Role("ROLE_USER"));
         user1.setRoles(user1Roles);
+        user1.getProfile().setImage("user1");
 
         userService.addUser(user1);
 
 
-        User user2 = new User("Lionel Messi", "user1@gmail.com", "pass1");
+        User user2 = new User("Sandip", "user2@gmail.com", "pass2");
 
         Set<Role> user2Roles = new HashSet<Role>();
         user2Roles.add(new Role("ROLE_USER"));
         user2.setRoles(user2Roles);
+        user2.getProfile().setImage("user2");
 
-
-        User user3 = new User("Ronaldinho", "user2@gmail.com", "pass2");
+        User user3 = new User("Nischal", "user3@gmail.com", "pass3");
         Set<Role> user3Roles = new HashSet<Role>();
         user3Roles.add(new Role("ROLE_USER"));
         user3.setRoles(user3Roles);
