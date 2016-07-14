@@ -1,4 +1,4 @@
-package com.mailsender.sample.mail;
+package com.mailsender.mail;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -10,17 +10,21 @@ import org.springframework.messaging.MessagingException;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
+import java.util.Properties;
 
 /**
  * Created by Sandip on 7/3/16.
  */
-@Component
+
 public class SenderService {
 
-    @Autowired
-    private JavaMailSender mailSender;
 
     public void sendMessage(String confirmationEmailJson){
          ConfirmationEmail confirmationEmail = readFromJson(confirmationEmailJson);
@@ -28,21 +32,46 @@ public class SenderService {
             return;
         }
         System.out.println("Sending email");
-        MimeMessage mail = mailSender.createMimeMessage();
-        try {
-            MimeMessageHelper helper = new MimeMessageHelper(mail, true);
-            helper.setTo("mytrial4@gmail.com");
-            //helper.setReplyTo("someone@localhost");
-            helper.setFrom("mulum2@gmail.com");
-            helper.setSubject(confirmationEmail.getSubject());
-            helper.setText(confirmationEmail.getBody());
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } catch (javax.mail.MessagingException e) {
-            e.printStackTrace();
-        } finally {}
-        mailSender.send(mail);
+        sendEmail(confirmationEmail);
+
     }
+
+    public void sendEmail(ConfirmationEmail confirmationEmail){
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class",
+                "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "465");
+
+        Session session = Session.getDefaultInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication("mulum2@gmail.com","");
+                    }
+                });
+
+        try {
+
+            Message message = new MimeMessage(session);
+
+
+            message.setFrom(new InternetAddress("mulum2@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(confirmationEmail.getSendTo()));
+            message.setSubject(confirmationEmail.getSubject());
+            message.setText(confirmationEmail.getBody());
+
+            Transport.send(message);
+
+            System.out.println("Email sent");
+
+        } catch (javax.mail.MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     public ConfirmationEmail readFromJson(String jsonConfirmationEmail){
         ObjectMapper mapper = new ObjectMapper();
@@ -60,24 +89,5 @@ public class SenderService {
         }
         return null;
 
-    }
-    @PostConstruct
-    public void send() {
-    /*    System.out.println("Sending email");
-        MimeMessage mail = mailSender.createMimeMessage();
-        try {
-            MimeMessageHelper helper = new MimeMessageHelper(mail, true);
-            helper.setTo("mytrial4@gmail.com");
-            //helper.setReplyTo("someone@localhost");
-            helper.setFrom("mulum2@gmail.com");
-            helper.setSubject("Hello From OpenMart Application");
-            helper.setText("Here is my message");
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } catch (javax.mail.MessagingException e) {
-            e.printStackTrace();
-        } finally {}
-        mailSender.send(mail);
-        //return helper;*/
     }
 }

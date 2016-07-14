@@ -90,7 +90,7 @@ public class OrderServiceImpl implements OrderService {
             user.addOrder(order);
             userService.updateUser(user);
 
-          //  orderConfirmationFacade.sendConfirmationEmail(user.getUsername(), order);
+            orderConfirmationFacade.sendConfirmationEmail(user.getUsername(), order);
 
         } else{
             order.setOrderStatus(OrderStatus.PAYMENT_FAILED);

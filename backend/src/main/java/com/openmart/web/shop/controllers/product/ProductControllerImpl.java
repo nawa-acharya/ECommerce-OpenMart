@@ -2,6 +2,7 @@ package com.openmart.web.shop.controllers.product;
 
 import com.openmart.core.business.product.model.Product;
 import com.openmart.core.business.product.service.ProductService;
+import com.openmart.core.rabbitmq.Producer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;

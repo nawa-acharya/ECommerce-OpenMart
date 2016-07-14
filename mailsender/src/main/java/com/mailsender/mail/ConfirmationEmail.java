@@ -1,4 +1,4 @@
-package com.mailsender.sample.mail;
+package com.mailsender.mail;
 
 import java.io.Serializable;
 

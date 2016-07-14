@@ -13,7 +13,7 @@ public class BackendApplication {
         ApplicationContext context = SpringApplication.run(BackendApplication.class, args);
 
 		MockUpData mockUpData = (MockUpData)context.getBean(MockUpData.class);
-		mockUpData.addSampleProducts();
-		mockUpData.addSampleUser();
+		//mockUpData.addSampleProducts();
+		//mockUpData.addSampleUser();
 	}
 }

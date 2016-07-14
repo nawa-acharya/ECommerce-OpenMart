@@ -2,12 +2,11 @@ package com.openmart.core.business.order.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.openmart.core.activemq.Producer;
+import com.openmart.core.rabbitmq.Producer;
 import com.openmart.core.business.order.model.Order;
 import com.openmart.core.business.order.model.OrderLine;
 import com.openmart.core.business.product.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
