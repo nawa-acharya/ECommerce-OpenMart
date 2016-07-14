@@ -24,18 +24,19 @@ function checkoutController($http, $scope, $rootScope, DataService,$state) {
         var order = new Order(payment, shipping, orderLines);
         console.log(angular.toJson(order))
         var data =angular.toJson(order)
-
-
-        $http.post('/order', data)
+        console.log($rootScope.loggedUser.userId)
+        var url = 'http://localhost:8090/openmart/api/user/'+$rootScope.loggedUser.userId+'/order/create';
+        $http.post(url, data)
             .then(function(response) {
                 if ( !response.data) {
-                    $scope.authError = 'Email or Password not right';
+                    $scope.message = 'Order couldnot be placed';
+                    $state.go('openmart.home.profile');
+
                 }else{
-                    $state.go('openmart.home');
-                    console.log(response.data)
+                    $state.go('openmart.home.profile');
                 }
             }, function(x) {
-                $scope.authError = 'Server Error';
+                $scope.message = 'Server Error';
             });
     }
 

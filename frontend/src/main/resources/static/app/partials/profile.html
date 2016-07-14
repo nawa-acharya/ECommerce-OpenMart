@@ -1,0 +1,77 @@
+<div>
+    <section class="box ">
+        <header class="panel_header">
+            <h2>User Basic Info</h2>
+        </header>
+        <div class="content-body padding-bottom-0">
+            <div class="row">
+                <form action ="#" method="post">
+                    <div ng-show="message">
+                        {{message}}
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-9 col-xs-12">
+                        <div class="form-group">
+                            <img class="img-responsive" ng-src="data/img/{{loggedUser.profile.image}}.jpg" alt="" style="max-width:120px;">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="field-1">First Name</label>
+                            <span class="desc"></span>
+                            <div class="controls">
+                                <input type="text" ng-model="loggedUser.profile.firstname" class="form-control" id="field-1">
+                            </div>
+
+                            <label class="form-label" for="field-1">Last Name</label>
+                            <span class="desc"></span>
+                            <div class="controls">
+                                <input type="text" ng-model="loggedUser.profile.lastname" class="form-control" id="field-1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="field-5">Date of Birth</label>
+                            <span class="desc">e.g. "04/03/2015"</span>
+                            <div class="controls">
+                                <input type="text" ng-model ="loggedUser.profile.dateOfBirth" ng-init="mask11='03/04/1975'" name="masked" ui-mask="99/99/9999" placeholder="MM/DD/YYYY" class="form-control" ng-model="mask11" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="field-5">Gender</label>
+                            <span class="desc"></span>
+                            <div class="input-group" inputgroup>
+                                <select class="form-control" ng-model="loggedUser.profile.gender">
+                                    <option></option>
+                                    <option ng-model="selected" >Male</option>
+                                    <option>Female</option>
+                                    <option>not set</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="field-1">Profile Image</label>
+                            <span class="desc"></span>
+                            <div class="controls">
+                                <input type="file" class="form-control" id="field-5">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="field-6">Brief</label>
+                            <span class="desc">e.g. "Enter any size of text description here"</span>
+                            <div class="controls">
+                                <textarea ng-model="loggedUser.profile.description" class="form-control" cols="5" id="field-6">Well known Industrialist and manager of Rocket Stat Inc. Also well known for his books and articles</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-8 col-md-8 col-sm-9 col-xs-12 padding-bottom-30">
+                        <div class="text-left">
+                            <button type="button" ng-click="save()" class="btn btn-primary">Save</button>
+                            <button type="button" ng-click="cancel()" class="btn">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </section>
+</div>

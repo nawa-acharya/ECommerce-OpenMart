@@ -6,9 +6,12 @@
 function storeController($scope, $stateParams, DataService, $http,$state,$rootScope) {
 
     // get store and cart from service
-    $http.get('data/products.json').success(function(data){
+    //$http.get('data/products.json').success(function(data){
+    //    $rootScope.store.products = data;
+    //})
+    $http.get('http://localhost:8090/openmart/api/product/list').success(function(data){
         $rootScope.store.products = data;
-    })
+    });
     //$scope.cart = DataService.cart;
     //$scope.store=DataService.store;
     $rootScope.cart = DataService.cart;

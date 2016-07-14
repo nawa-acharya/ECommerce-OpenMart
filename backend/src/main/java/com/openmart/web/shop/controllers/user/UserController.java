@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by Nawa on 7/10/2016.
  */
+
 @Controller
 @CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping(value = "openmart/api/user")

@@ -64,16 +64,10 @@
         </div>
 
         <!-- buttons -->
-        <div class="span4" ng-show="state.is('openmart.home.cart')" >
+        <div class="span4" >
             <p class="text-info">
-                <button
-                        class="btn btn-block btn-link"
-                        ng-click="cart.checkout('PayPal')"
-                        ng-disabled="cart.getTotalCount() < 1" >
-                    <img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" alt="checkout PayPal"/>
-                </button>
                 <button class="btn btn-block btn-link"
-                        ng-click="cart.checkout('Google')"
+                        ui-sref="openmart.home.checkout"
                         ng-disabled="cart.getTotalCount() < 1" >
                 </button>
             </p>
