@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Pattern;
 
 /**
  * Created by Endalkachew on 11-Jul-16.
@@ -14,7 +15,6 @@ public class ProductCatalog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
     private double quantity;
 
     private boolean available;

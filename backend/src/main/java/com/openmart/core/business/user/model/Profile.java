@@ -1,6 +1,9 @@
 package com.openmart.core.business.user.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Nawa on 7/11/2016.
@@ -10,12 +13,16 @@ public class Profile {
     @Id
     @GeneratedValue
     private int id;
+    @NotNull
     private String firstname = "not set";
+    @NotBlank
     private String lastname = "not set";
+    @NotNull
     private String dateOfBirth = "not set";
     @Lob
+    @NotBlank
     private String description = "not set";
-    private String gender = "not set";
+    private String gender = "male";
   //  @OneToOne(cascade = CascadeType.ALL)
     private String image = "profile";
 

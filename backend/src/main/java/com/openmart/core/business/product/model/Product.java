@@ -1,6 +1,7 @@
 package com.openmart.core.business.product.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Oops on 7/11/2016.
@@ -11,8 +12,10 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @NotNull
     private String title;
     private double price;
+    @Lob
     private String description;
     private String catagory;
     private byte image;

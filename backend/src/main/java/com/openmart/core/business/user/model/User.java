@@ -1,8 +1,11 @@
 package com.openmart.core.business.user.model;
 
 import com.openmart.core.business.order.model.Order;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 import java.util.Set;
 
@@ -17,9 +20,14 @@ public class User {
     @Id
     @GeneratedValue
     private int userId;
+    @NotNull
     private String name;
+
     @Column(table = "logintable")
+    @Pattern(regexp = "/^\\S+@\\S+\\.\\S+$/")
     private String username;
+
+    @NotBlank
     @Column (table = "logintable")
     private String password;
 
@@ -27,12 +35,16 @@ public class User {
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Order> orders;
+
     @OneToOne(cascade = CascadeType.ALL)
     private ShippingAddress shippingAddress;
+
     @OneToOne(cascade = CascadeType.ALL)
     private BillingAddress billingAddress;
+
     @OneToOne(cascade = CascadeType.ALL)
     private Profile profile;
 

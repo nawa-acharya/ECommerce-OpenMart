@@ -3,6 +3,8 @@ package com.openmart.core.business.user.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 /**
  * Created by Nawa on 7/11/2016.
@@ -13,16 +15,24 @@ public class ShippingAddress implements Address {
     @Id
     @GeneratedValue
     private int id;
+    @NotNull
     private String firstName;
+    @NotNull
     private String lastName;
+    @NotNull
     private String street;
+    @NotNull
     private String city;
+    @NotNull
     private String state;
+    @Pattern(regexp = "\\d{10}")
     private long phone;
+    @Pattern(regexp = "(^\\d{5}$)|(^\\d{5}-\\d{4}$)")
     private String postcode;
+    @Pattern(regexp = "^\\d{5}(?:[-\\s]\\d{4})?$")
     private String zip;
 
-     public ShippingAddress() {
+    public ShippingAddress() {
     }
 
     public ShippingAddress(String firstName, String lastName, String street, String city, String state, long phone, String postcode, String zip) {
