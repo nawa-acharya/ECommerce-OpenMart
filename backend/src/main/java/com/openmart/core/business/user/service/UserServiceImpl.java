@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public void addUser(User user) {
-        if(!checkIfUserExists(user))
+        if (!checkIfUserExists(user))
             userDAO.addUser(user);
         else {
             logger.log("User name already exists");
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
     public User findUser(Login login) {
         String username = login.getUsername();
         String password = login.getPassword();
-       return userDAO.findUser(username, password);
+        return userDAO.findUser(username, password);
     }
 
     @Override
@@ -87,10 +87,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByUsername(String username) {
-        return  userDAO.findUserFromName(username);
+        return userDAO.findUserFromName(username);
     }
 
-    public User setDefaultRole(User user){
+    public User setDefaultRole(User user) {
         //user.setRoles();
         return user;
     }
@@ -104,10 +104,11 @@ public class UserServiceImpl implements UserService {
     public boolean checkIfUserExists(User user) {
         String tempUserName = user.getUsername();
         User existingUser = userDAO.findUserFromName(tempUserName);
-        if(existingUser.getUsername().equalsIgnoreCase(tempUserName))
+        if (existingUser != null && existingUser.getUsername().equalsIgnoreCase(tempUserName)) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 
     public void setUserDAO(UserDAO userDAO) {
