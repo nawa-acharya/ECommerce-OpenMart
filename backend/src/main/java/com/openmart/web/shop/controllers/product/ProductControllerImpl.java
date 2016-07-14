@@ -16,6 +16,7 @@ import java.util.List;
  */
 @Controller
 @CrossOrigin(origins = "http://localhost:8080")
+//@CrossOrigin(origins = "http://backendopenmart.cfapps.io/")
 @RequestMapping(value = "openmart/api/product")
 public class ProductControllerImpl {
 

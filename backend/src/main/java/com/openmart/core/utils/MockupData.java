@@ -94,7 +94,7 @@ public class MockupData {
         Set<Role> user1Roles = new HashSet<Role>();
         user1Roles.add(new Role("ROLE_USER"));
         user1.setRoles(user1Roles);
-        user1.getProfile().setImage("user1");
+       // user1.getProfile().setImage("user1");
 
         userService.addUser(user1);
 
@@ -104,7 +104,7 @@ public class MockupData {
         Set<Role> user2Roles = new HashSet<Role>();
         user2Roles.add(new Role("ROLE_USER"));
         user2.setRoles(user2Roles);
-        user2.getProfile().setImage("user2");
+       //user2.getProfile().setImage("user2");
 
         User user3 = new User("Nischal", "user3@gmail.com", "pass3");
         Set<Role> user3Roles = new HashSet<Role>();
