@@ -13,16 +13,16 @@ app.controller('RegisterFormController', ['$rootScope','$scope', '$http', '$stat
                 name: $scope.user.name,
                 username: $scope.user.email,
                 password: $scope.user.password
-            }
+            };
         console.log(data)
-        $http.post('http://localhost:8090/openmart/api/user/register',data)
+        $http.post('http://localhost:8090/openmart/api/user/register',angular.toJson(data))
             .then(function(response) {
                 if ( !response.data ) {
                     $scope.authError = 'Email or Password not right';
                 }else{
                     console.log(angular.toJson(response.data))
                     $rootScope.loggedUser=response.data
-                    $state.go('openmart.home');
+                    $state.go('openmart.home.store');
                 }
             }, function(x) {
                 $scope.authError = 'Server Error';
