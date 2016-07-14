@@ -12,6 +12,7 @@ import java.util.Set;
 /**
  * Created by Nawa on 7/10/2016.
  */
+//user model
 @Entity
 @SecondaryTable(name = "logintable")
 //pkJoinColumns={@PrimaryKeyJoinColumn(name="loginId", referencedColumnName="userId") })
