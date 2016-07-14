@@ -89,6 +89,7 @@ body{
 #page-wrapper6 {
     width: 100%;
     position: absolute;
+    height: auto;
     padding: 15px;
     top: 50px;
 }
