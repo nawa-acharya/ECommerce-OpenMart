@@ -11,7 +11,7 @@ function checkoutController($http, $scope, $rootScope, DataService,$state,AclSer
     $scope.can = AclService.can;
 
 
-    function placeOrder() {
+        function placeOrder() {
         var orderLines = [];
         var payment = new Payment($scope.payment.cardNumber, $scope.payment.expiryMonth,
             $scope.payment.expiryYear, $scope.payment.cvvCode);
@@ -27,21 +27,22 @@ function checkoutController($http, $scope, $rootScope, DataService,$state,AclSer
         console.log(angular.toJson(order))
         var data =angular.toJson(order)
         console.log($rootScope.loggedUser.userId)
-        var url = 'http://localhost:8090/openmart/api/user/'+$rootScope.loggedUser.userId+'/order/create';
-        $http.post(url, data)
-            .then(function(response) {
-                if ( !response.data) {
-                    $scope.message = 'Order couldnot be placed';
-                    $scope.cart.clearItems();
-                    $state.go('openmart.home.checkout.thankyou');
-
-                }else{
-                    $scope.cart.clearItems();
-                    $state.go('openmart.home.checkout.thankyou');
-                }
-            }, function(x) {
-                $scope.message = 'Server Error';
-            });
+        $state.go('openmart.home.thankyou');
+        //var url = 'http://localhost:8090/openmart/api/user/'+$rootScope.loggedUser.userId+'/order/create';
+        //$http.post(url, data)
+        //    .then(function(response) {
+        //        if ( !response.data) {
+        //            $scope.message = 'Order couldnot be placed';
+        //            $scope.cart.clearItems();
+        //            $state.go('openmart.home.checkout.thankyou');
+        //
+        //        }else{
+        //            $scope.cart.clearItems();
+        //            $state.go('openmart.home.checkout.thankyou');
+        //        }
+        //    }, function(x) {
+        //        $scope.message = 'Server Error';
+        //    });
     }
     function Shipping(firstName, lastName, address, city, phone, postCode, country) {
         this.firstName = firstName;

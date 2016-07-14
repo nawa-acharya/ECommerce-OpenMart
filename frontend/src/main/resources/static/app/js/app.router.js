@@ -29,9 +29,21 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl: "partials/product-view.html",
         controller: storeController
 
-    }).state('openmart.home.product-edit', {
-            url: "/product-edit",
-            templateUrl: "partials/product-edit.html"
+    }).state('openmart.home.thankyou', {
+            url: "/thankyou",
+            templateUrl: "partials/thankyou.html"
+        //,
+        //    resolve : {
+        //        'acl' : ['$q', 'AclService', function($q, AclService){
+        //            if(AclService.can('checkout')){
+        //                // Has proper permissions
+        //                return true;
+        //            } else {
+        //                // Does not have permission
+        //                return $q.reject('Unauthorized');
+        //            }
+        //        }]
+        //    }
 
         })
         .state('openmart.home.product-add', {
@@ -93,21 +105,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         resolve : {
             'acl' : ['$q', 'AclService', function($q, AclService){
                 if(AclService.can('checkout')){
-                    // Has proper permissions
-                    return true;
-                } else {
-                    // Does not have permission
-                    return $q.reject('Unauthorized');
-                }
-            }]
-        }
-    }).state('openmart.home.checkout.thankyou', {
-        url: "/thankyou",
-        templateUrl: "partials/thankyou.html",
-        controller: thankyouController,
-        resolve : {
-            'acl' : ['$q', 'AclService', function($q, AclService){
-                if(AclService.canAny('checkout')){
                     // Has proper permissions
                     return true;
                 } else {
