@@ -1,9 +1,8 @@
 <p class="text-info">
-    Thanks for shopping at the Angular Store.<br />
+    Thanks for shopping at the OpenMart.<br />
     This is your shopping cart. Here you can edit the items,
     go back to the store, clear the cart, or check out.
 </p>
-
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span8">
@@ -64,14 +63,7 @@
         </div>
 
         <!-- buttons -->
-        <div class="span4" >
-            <p class="text-info">
-                <button class="btn btn-block btn-link"
-                        ui-sref="openmart.home.checkout"
-                        ng-disabled="cart.getTotalCount() < 1" >
-                </button>
-            </p>
-        </div>
+     <button ui-sref="openmart.home.checkout">Proceed To Checkout</button>
     </div>
 </div>
 

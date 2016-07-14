@@ -3,11 +3,11 @@
  */
 
 
-function profileController($http,$rootScope,$scope){
+function profileController($http,$rootScope,$scope,AclService){
      $scope.save = save;
      $scope.cancel = cancel;
      $scope.message =null
-
+    $scope.can = AclService.can;
     function save(){
          console.log("Withinprofile save"+$rootScope.loggedUser)
 

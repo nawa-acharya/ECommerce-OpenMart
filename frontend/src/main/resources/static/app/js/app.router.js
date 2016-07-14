@@ -4,22 +4,22 @@
 var app = angular.module('openmart', ["ui.router",'mm.acl'])
 app.config(function ($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise("/openmart/home")
+    $urlRouterProvider.otherwise("/openmart/home/store")
 
     $stateProvider
         .state('openmart', {
             abstract: true,
             url: "/openmart",
-            templateUrl: "partials/app.html",
+            templateUrl: "partials/app.html"
         })
         .state('openmart.home', {
             url: "/home",
-            templateUrl: "partials/app-dashboard.html",
+            templateUrl: "partials/app-dashboard.html"
         })
         .state('openmart.home.store', {
             url: "/store",
             templateUrl: "partials/store.html",
-            controller: storeController,
+            controller: storeController
         }).state('openmart.home.cart', {
         url: "/cart",
         templateUrl: "partials/cart.html",
@@ -154,7 +154,7 @@ app.run(['AclService', function (AclService) {
     // with arrays listing their permissions as their value.
     var aclData = {
         ROLE_ADMIN: ['logout','manage_profile','manage_product','checkout'],
-        ROLE_USER: ['checkout','manage_profile'],
+        ROLE_USER: ['checkout','manage_profile','logout'],
         ROLE_GUEST: ['login']
     }
     console.log(aclData);

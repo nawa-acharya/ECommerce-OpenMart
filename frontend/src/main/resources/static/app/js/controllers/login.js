@@ -8,7 +8,7 @@
 // signin controller
 app.controller('LoginFormController', ['$rootScope','$scope', '$http', '$state','AclService', function($rootScope,$scope, $http, $state,AclService) {
     $scope.user = {};
-
+    $scope.can = AclService.can;
     $scope.authError = null;
     $scope.login = function() {
     $scope.authError = null;

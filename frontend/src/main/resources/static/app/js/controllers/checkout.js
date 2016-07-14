@@ -3,11 +3,13 @@
  */
 
 
-function checkoutController($http, $scope, $rootScope, DataService,$state) {
+function checkoutController($http, $scope, $rootScope, DataService,$state,AclService) {
     $scope.shipping = Shipping;
     $scope.payment = Payment;
     $scope.placeOrder = placeOrder
     $scope.cart = DataService.cart
+    $scope.can = AclService.can;
+
 
     function placeOrder() {
         var orderLines = [];
