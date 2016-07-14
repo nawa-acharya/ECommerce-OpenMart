@@ -32,9 +32,11 @@ function checkoutController($http, $scope, $rootScope, DataService,$state,AclSer
             .then(function(response) {
                 if ( !response.data) {
                     $scope.message = 'Order couldnot be placed';
+                    $scope.cart.clearItems();
                     $state.go('openmart.home.checkout.thankyou');
 
                 }else{
+                    $scope.cart.clearItems();
                     $state.go('openmart.home.checkout.thankyou');
                 }
             }, function(x) {

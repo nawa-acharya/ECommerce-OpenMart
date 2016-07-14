@@ -18,16 +18,16 @@ public class Product {
     @Lob
     private String description;
     private String catagory;
-    private byte image;
+    private int image;
 
     @OneToOne(cascade = CascadeType.ALL)
     private ProductCatalog productCatalog;
 
-    public byte getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(byte image) {
+    public void setImage(int image) {
         this.image = image;
     }
 
