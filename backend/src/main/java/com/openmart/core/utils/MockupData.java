@@ -74,32 +74,35 @@ public class MockUpData {
 
     public void addSampleUser(){
         Role role = new Role();
-        Login x = new Login("admin", "admin");
-        User user = new User("Team_Water", "admin", "admin");
+        User admin = new User("Team_Water", "admin@gmail.com", "admin");
         Set<Role> setAdminRole = new HashSet<Role>();
 
-        role.setRole("ROLE_ADMIN");
-        setAdminRole.add(role);
-        user.setRoles(setAdminRole);
+        setAdminRole.add(new Role("ROLE_ADMIN"));
+        admin.setRoles(setAdminRole);
 
-        userService.addUser(user);
+        userService.addUser(admin);
 
-        role = new Role();
-        user = new User("Lionel Messi", "user1", "pass1");
 
-        role.setRole("ROLE_USER");
-        setAdminRole.add(role);
-        user.setRoles(setAdminRole);
+        User user1 = new User("Lionel Messi", "user1@gmail.com", "pass1");
 
-        userService.addUser(user);
+        Set<Role> user1Roles = new HashSet<Role>();
+        user1Roles.add(new Role("ROLE_USER"));
+        user1.setRoles(user1Roles);
 
-        role = new Role();
-        user = new User("Ronaldinho", "user2", "pass2");
+        userService.addUser(user1);
 
-        role.setRole("ROLE_USER");
-        setAdminRole.add(role);
-        user.setRoles(setAdminRole);
 
-        userService.addUser(user);
+        User user2 = new User("Lionel Messi", "user1@gmail.com", "pass1");
+
+        Set<Role> user2Roles = new HashSet<Role>();
+        user2Roles.add(new Role("ROLE_USER"));
+        user2.setRoles(user2Roles);
+
+
+        User user3 = new User("Ronaldinho", "user2@gmail.com", "pass2");
+        Set<Role> user3Roles = new HashSet<Role>();
+        user3Roles.add(new Role("ROLE_USER"));
+        user3.setRoles(user3Roles);
+        userService.addUser(user3);
     }
 }

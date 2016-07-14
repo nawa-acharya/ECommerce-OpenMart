@@ -6,24 +6,30 @@
 
 /* Controllers */
 // signin controller
-app.controller('LoginFormController', ['$rootScope','$scope', '$http', '$state', function($rootScope,$scope, $http, $state,$stateParams) {
+app.controller('LoginFormController', ['$rootScope','$scope', '$http', '$state','AclService', function($rootScope,$scope, $http, $state,AclService) {
     $scope.user = {};
 
     $scope.authError = null;
     $scope.login = function() {
     $scope.authError = null;
+     var data ={
+         username: $scope.user.email,
+         password: $scope.user.password
+     };
         // Try to login
-        $http.post('http://localhost:8090/openmart/api/user/login', {
-                username: $scope.user.email,
-                password: $scope.user.password
-        } )
+        $http.post('http://localhost:8090/openmart/api/user/login', data )
             .then(function(response) {
                 if ( !response.data ) {
                     $scope.authError = 'Email or Password not right';
                 }else{
-                    console.log(angular.toJson(response.data))
                     $rootScope.loggedUser=response.data
-                    $state.go('openmart.home.profile');
+                    console.log(response.data)
+                    AclService.flushRoles();
+                    for (var i = 0, len =  response.data.roles.length; i < len; i++) {
+                        console.log($rootScope.loggedUser.roles[i])
+                        AclService.attachRole($rootScope.loggedUser.roles[i].role);
+                    }
+                    $state.go('openmart.home.store');
                 }
             }, function(x) {
                 $scope.authError = 'Server Error';

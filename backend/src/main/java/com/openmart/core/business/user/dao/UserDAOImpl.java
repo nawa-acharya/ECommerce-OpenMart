@@ -29,8 +29,9 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void addUser(User user) {
-        User userWithRole = setRolesToUser(user);
-        sf.getCurrentSession().persist(userWithRole);
+
+
+        sf.getCurrentSession().persist(user);
     }
 
     @Override
@@ -98,14 +99,14 @@ public class UserDAOImpl implements UserDAO {
         }
         return null;
     }
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public User setRolesToUser(User user) {
-        Role role = new Role();
-        Set<Role> set = new HashSet<Role>();
-        role.setRole("ROLE_USER");
-        set.add(role);
-        user.setRoles(set);
-        return user;
-    }
+//    @Transactional(propagation = Propagation.REQUIRES_NEW)
+//    public User setRolesToUser(User user) {
+//        Role role = new Role();
+//        Set<Role> set = new HashSet<Role>();
+//        role.setRole("ROLE_USER");
+//        set.add(role);
+//        user.setRoles(set);
+//        return user;
+//    }
 }
 

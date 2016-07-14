@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -26,8 +28,15 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public void addUser(User user) {
-        if (!checkIfUserExists(user))
+        if (!checkIfUserExists(user)){
+            if (user!=null&&user.getRoles().isEmpty()){
+                user.setRoles(new HashSet<>(Arrays.asList(new Role("ROLE_USER"))));
+
+            }
             userDAO.addUser(user);
+
+        }
+
         else {
             logger.log("User name already exists");
             System.exit(0);
