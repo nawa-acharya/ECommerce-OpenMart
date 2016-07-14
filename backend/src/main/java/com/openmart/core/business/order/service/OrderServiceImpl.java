@@ -89,6 +89,7 @@ public class OrderServiceImpl implements OrderService {
 
             user.addOrder(order);
             userService.updateUser(user);
+            userService.getAllUsers();
 
             orderConfirmationFacade.sendConfirmationEmail(user.getUsername(), order);
 

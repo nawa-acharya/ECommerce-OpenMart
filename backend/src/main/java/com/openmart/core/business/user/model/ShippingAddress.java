@@ -15,27 +15,27 @@ public class ShippingAddress implements Address {
     @Id
     @GeneratedValue
     private int id;
-    @NotNull
+    //@NotNull
     private String firstName;
-    @NotNull
+   // @NotNull
     private String lastName;
-    @NotNull
+    //@NotNull
     private String street;
-    @NotNull
+   // @NotNull
     private String city;
-    @NotNull
+   // @NotNull
     private String state;
-    @Pattern(regexp = "\\d{10}")
-    private long phone;
-    @Pattern(regexp = "(^\\d{5}$)|(^\\d{5}-\\d{4}$)")
+    //@Pattern(regexp = "\\d{10}")
+    private String phone;
+   // @Pattern(regexp = "(^\\d{5}$)|(^\\d{5}-\\d{4}$)")
     private String postcode;
-    @Pattern(regexp = "^\\d{5}(?:[-\\s]\\d{4})?$")
+  //  @Pattern(regexp = "^\\d{5}(?:[-\\s]\\d{4})?$")
     private String zip;
 
     public ShippingAddress() {
     }
 
-    public ShippingAddress(String firstName, String lastName, String street, String city, String state, long phone, String postcode, String zip) {
+    public ShippingAddress(String firstName, String lastName, String street, String city, String state, String phone, String postcode, String zip) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.street = street;
@@ -116,11 +116,11 @@ public class ShippingAddress implements Address {
         this.lastName = lastName;
     }
 
-    public long getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(long phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

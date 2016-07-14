@@ -29,12 +29,11 @@ public class UserServiceImpl implements UserService {
     @Transactional(propagation = Propagation.REQUIRED)
     public void addUser(User user) {
         if (!checkIfUserExists(user)){
-            if (user!=null&&user.getRoles().isEmpty()){
+            if (user!=null && user.getRoles().isEmpty()){
                 user.setRoles(new HashSet<>(Arrays.asList(new Role("ROLE_USER"))));
 
             }
             userDAO.addUser(user);
-
         }
 
         else {
@@ -111,6 +110,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean checkIfUserExists(User user) {
+        if(user == null){
+            return false;
+        }
         String tempUserName = user.getUsername();
         User existingUser = userDAO.findUserFromName(tempUserName);
         if (existingUser != null && existingUser.getUsername().equalsIgnoreCase(tempUserName)) {

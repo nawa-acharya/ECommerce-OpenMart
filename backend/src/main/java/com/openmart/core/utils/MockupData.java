@@ -18,7 +18,7 @@ import java.util.Set;
  */
 //mokeup data for user and product
 @Component
-public class MockUpData {
+public class MockupData {
 
     @Autowired
     ProductService productService;
@@ -74,7 +74,7 @@ public class MockUpData {
 
     public void addSampleUser(){
         Role role = new Role();
-        User admin = new User("Team_Water", "admin@gmail.com", "admin");
+        User admin = new User("Team_Water", "mytrial4@gmail.com", "admin");
         Set<Role> setAdminRole = new HashSet<Role>();
 
         setAdminRole.add(new Role("ROLE_ADMIN"));

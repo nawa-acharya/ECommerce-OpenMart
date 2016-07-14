@@ -48,7 +48,7 @@ public class SenderService {
         Session session = Session.getDefaultInstance(props,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("mulum2@gmail.com","");
+                        return new PasswordAuthentication("mulum2@gmail.com","testpass4teamwater");
                     }
                 });
 
