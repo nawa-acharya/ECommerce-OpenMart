@@ -1,32 +1,35 @@
 'use strict';
 
 // signup controller
-app.controller('RegisterFormController', ['$scope', '$http', '$state', function($scope, $http, $state) {
+app.controller('RegisterFormController', ['$rootScope','$scope', '$http', '$state', function($rootScope,$scope, $http, $state) {
     $scope.user = {};
     $scope.authError = null;
     $scope.register = function() {
       $scope.authError = null;
       // Try to create
-        var data =  {
-            user:{
+        var data =
+            {
                 name: $scope.user.name,
                 username: $scope.user.email,
                 password: $scope.user.password
             }
-        }
+        console.log(data)
+        $http.post('http://localhost:8090/openmart/api/user/register',data)
+            .then(function(response) {
+                if ( !response.data ) {
+                    $scope.authError = 'Email or Password not right';
+                }else{
+                    console.log(angular.toJson(response.data))
+                    $rootScope.loggedUser=response.data
+                    $state.go('openmart.home');
+                }
+            }, function(x) {
+                $scope.authError = 'Server Error';
+            });
 
-      $http.post('/register',data
-      )
-      .then(function(response) {
-        if ( !response.data.user ) {
-          $scope.authError = response;
-        }else{
 
-          $state.go('openmart.home');
-        }
-      }, function(x) {
-        $scope.authError = 'Server Error';
-      });
+
+
     };
   }])
  ;

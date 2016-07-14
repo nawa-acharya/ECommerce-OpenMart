@@ -2,7 +2,7 @@ package com.openmart.core.business.user.dao;
 
 import com.openmart.core.business.user.model.Role;
 import com.openmart.core.business.user.model.User;
-import com.openmart.core.utils.Crypto;
+//import com.openmart.core.utils.Crypto;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,7 +92,7 @@ public class UserDAOImpl implements UserDAO {
 
     public String getEncryptedPassword(String password) {
         try {
-            return Crypto.encrypt(password);
+           // return Crypto.encrypt(password);
         } catch (Exception e) {
             e.printStackTrace();
         }

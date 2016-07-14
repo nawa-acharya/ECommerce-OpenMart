@@ -18,6 +18,7 @@ public interface UserService {
     public void updateUser(User user);
 
     public User getUser(String userName);
+    public User findByUserId(int userId);
 
     public List<User> getAllUsers();
 

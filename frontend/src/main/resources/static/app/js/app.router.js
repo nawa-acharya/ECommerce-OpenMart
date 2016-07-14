@@ -35,12 +35,18 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
         .state('openmart.home.product-add', {
             url: "/product-add",
-            templateUrl: "partials/product-add.html"
+            templateUrl: "partials/product-add.html",
+            controller:productController
         }).state('access', {
         abstract:true,
         url: "/access",
          template: '<div ui-view class=""></div>'
-    }).state('access.login', {
+    })  .state('openmart.home.profile', {
+            url: "/profile",
+            templateUrl: "partials/profile.html",
+            controller:profileController
+        })
+        .state('access.login', {
         url: "/openmart/login",
         templateUrl: "partials/login.html"
     }) .state('access.register', {
@@ -50,6 +56,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         url: "/openmart/checkout",
         templateUrl: "partials/checkout.html",
         controller: checkoutController
+    }).state('openmart.home.checkout.thankyou', {
+        url: "/thankyou",
+        templateUrl: "partials/thankyou.html",
+        controller: thankyouController
     })
 });
 // create a data service that provides a store and a shopping cart that
