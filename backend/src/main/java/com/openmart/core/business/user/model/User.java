@@ -24,7 +24,7 @@ public class User {
     private String name;
 
     @Column(table = "logintable")
-    @Pattern(regexp = "/^\\S+@\\S+\\.\\S+$/")
+    @NotNull
     private String username;
 
     @NotBlank
