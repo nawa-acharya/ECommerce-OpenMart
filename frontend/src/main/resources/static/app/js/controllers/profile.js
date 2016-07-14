@@ -11,9 +11,9 @@ function profileController($http,$rootScope,$scope,AclService){
     function save(){
          console.log("Withinprofile save"+$rootScope.loggedUser)
 
-        var url ='http://localhost:8090/openmart/api/user/profile/update/'+$rootScope.loggedUser.username
+        var url ='http://localhost:8090/openmart/api/user/profile/update/'
 
-        $http.post(url,$rootScope.loggedUser.profile)
+        $http.post(url,$rootScope.loggedUser)
             .then(function(response) {
                 if ( !response.data ) {
                     $scope.authError = 'Profile Couldnot be updated';
